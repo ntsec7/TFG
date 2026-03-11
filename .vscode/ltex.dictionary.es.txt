@@ -1,0 +1,6 @@
+plugins
+scraping
+Supabase
+Redis
+Compass
+Framework

@@ -145,6 +145,12 @@ Google.
 \newblock \url{https://rubyonrails.org/}, 2026.
 \newblock Accedido el 15 de febrero de 2026.
 
+\bibitem{supabase2026home}
+{Supabase Inc.}
+\newblock Supabase - build in a weekend, scale to millions.
+\newblock \url{https://supabase.com/}, 2026.
+\newblock Accedido el 4 de marzo de 2026.
+
 \bibitem{postgresql}
 {The PostgreSQL Global Development Group}.
 \newblock Postgresql - the world's most advanced open source relational
@@ -193,5 +199,19 @@ Google.
 \newblock Redis - the real-time data platform.
 \newblock \url{https://redis.io/}, 2026.
 \newblock Accedido el 15 de febrero de 2026.
+
+\bibitem{RGPD}
+{Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril
+  de 2016 (Reglamento General de Protección de Datos)}.
+\newblock Reglamento general de protección de datos (rgpd).
+\newblock \url{https://www.boe.es/buscar/doc.php?id=DOUE-L-2016-80807}, 2016.
+\newblock Accedido el 11 de marzo de 2026.
+
+\bibitem{LOPDGDD}
+{Jefatura del Estado}.
+\newblock Ley orgánica 3/2018 de protección de datos personales y garantía
+  de los derechos digitales (lopdgdd).
+\newblock \url{https://www.boe.es/eli/es/lo/2018/12/05/3/con}, 2018.
+\newblock Accedido el 11 de marzo de 2026.
 
 \end{thebibliography}

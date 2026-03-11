@@ -55,12 +55,15 @@ Es recomendable que los usuarios tengan conocimientos básicos de informática y
 
 \subsection{Restricciones}
 
-Las principales restricciones que debe cumplir el sistema son RES1, RES3 y RES6, las cuales vamos a comentar a continuación:
+Las principales restricciones que debe cumplir el sistema son RES1 y RES2, las cuales vamos a comentar a continuación:
 
 \begin{itemize}
-    
+    \item Código RES1: La aplicación estará disponible para dispositivos móviles,
+    \item Código RES2: El sistema será multiplataforma, pudiendo ejecutarse en sistemas operativos Android e iOS.
     \item Código RES3: Siempre debe haber al menos un administrador creado en el sistema.
-    \item Código RES4: Un administrador no podra cambiar su propio rol o eliminarse.
+    \item Código RES4: Un administrador no podrá cambiar su propio rol o eliminarse.
+    \item Código RES5: Será necesario disponer de conexión a Internet para poder utilizar la aplicación.
+    \item Código RES6: No será necesario hardware adicional aparte del propio dispositivo móvil para utilizar la aplicación. 
 \end{itemize}
 
 \begin{comment}
@@ -68,7 +71,7 @@ Las principales restricciones que debe cumplir el sistema son RES1, RES3 y RES6,
     \item Código RES1: Una vez insertado un usuario con un email específico en la base de datos, no se podrá registrar un usuario con el mismo  email (debido a la duplicidad).
     \item Código RES2: Una vez añadido un usuario en un grupo, no se podrá volver a insertar(a causa de que ya pertenece a él).
     \item Código RES3: Siempre debe haber al menos un administrador creado en el sistema.
-    \item Código RES4: Un administrador no podra cambiar su propio rol o eliminarse.
+    \item Código RES4: Un administrador no podrá cambiar su propio rol o eliminarse.
     \item Código RES5: El email introducido deberá contar con un formato específico.
     \item Código RES6: El nombre de usuario no podrá estar repetido en el sistema.
     \item Código RES7: Para que exista un grupo, debe haber en él al menos un miembro.
@@ -86,36 +89,77 @@ Se asume que el sistema operativo de destino es Android o iOS y que estará disp
 \subsection{Requisitos funcionales}
 
 \begin{itemize}
-    \item Código REQ1: Registro de decisión $\rightarrow$ El administrador podrá registrar decisiones por defecto y guardarlas en la base de datos. Para ello, tendrá como mínimo que rellenar el ID de la decisión, el título y la lista de opciones.
-    \item Código REQ2: Creación de opciones $\rightarrow$ El sistema permitirá que los usuarios añadan opciones a las decisiones, contando cada una con título y opcionalmente descripción e imagen.
-    \item Código REQ3: Subida de imágenes $\rightarrow$ Los usuarios podrán adjuntar imágenes en el sistema.
-    \item Código REQ4: Mecanismo de votación $\rightarrow$ El sistema permitirá al creador de la votación elegir el tipo de votación, pudiendo elegir entre una lista de opciones como ranking, consenso, pesos, etc.
-    \item Código REQ5: Límite de tiempo $\rightarrow$ El creador de la votación podrá fijar un tiempo máximo para que el resto de miembros ejerza su derecho al voto.
-    \item Código REQ6: Filtrado $\rightarrow$ El sistema contará con sistemas de filtrado y búsqueda mediante APIs o scraping para aportar opciones en la votación.
-    \item Código REQ7: Perfil del usuario $\rightarrow$ El usuario dispondrá de una cuenta personal asociada a él que podrá crear, modificar y eliminar.
-    \item Código REQ8: Login $\rightarrow$ Todos los usuarios entrarán al sistema mediante un inicio de sesión compuesto por nombre de usuario y contraseña.
-    \item Código REQ9: Administración $\rightarrow$ El administrador dispondrá de acceso total a los datos guardados en el sistema pudiendo modificarlos a voluntad. 
+    \item \textit{\uline{Gestión de usuario:}}
+        \begin{itemize}
+            \item Código REQ1: Registro de usuario $\rightarrow$ El sistema permitirá al usuario crearse una cuenta personal asociada a él.
+            \item Código REQ2: Modificación de usuario $\rightarrow$ El usuario podrá modificar los datos de su cuenta.
+            \item Código REQ3: Eliminación de usuario $\rightarrow$ Un usuario podrá eliminar su cuenta personal.
+            \item Código REQ4: Subida de imágenes $\rightarrow$ Los usuarios podrán adjuntar imágenes en el sistema.
+            \item Código REQ5: Historial $\rightarrow$ El sistema permitirá a los usuarios consultar un histórico de las votaciones pasadas.
+            \item 
+        \end{itemize}
+    \item \textit{\uline{Gestión de administrador:}} 
+        \begin{itemize}
+          \item Código REQ6: Creación de administrador $\rightarrow$ Para crear un administrador otro administrador deberá cambiar el rol de un usuario de cliente a administrador.
+          \item Código REQ7: Eliminación de administrador $\rightarrow$ Para eliminar un administrador otro administrador deberá cambiarle el rol a cliente.
+          \item Código REQ8: Registro de decisión $\rightarrow$ El administrador podrá registrar decisiones por defecto y guardarlas en la base de datos. Para ello, tendrá como mínimo que rellenar el ID de la decisión, el título y la lista de opciones.  
+          \item Código REQ9: Gestión de datos $\rightarrow$ El administrador podrá modificar o eliminar la información almacena en el sistema.
+        \end{itemize}
+    \item \textit{\uline{Gestión de los grupos:}} 
+        \begin{itemize}
+            \item Código REQ10: Creación de grupos $\rightarrow$ Los usuarios podrán crear grupos asignandoles un nombre y opcionalmente una imagen y lista de miembros.
+            \item Código REQ11: Añadir usuarios $\rightarrow$ Los miembros de un grupo podrán añadir a otros miembros.  
+            \item Código REQ12: Eliminar usuarios $\rightarrow$ Los miembros de un grupo podrán eliminar a otros miembros.
+            \item Código REQ13: Salir de un grupo $\rightarrow$ Los usuarios que formen parte de un grupo podrán abandonarlo cuando deseen.
+            \item Código REQ14: Permiso de voto $\rightarrow$ El sistema permitirá a los usuarios pertenecientes a un grupo participar en las votaciones activas del mismo.
+        \end{itemize}  
+    \item \textit{\uline{Gestión de las votaciones:}} 
+        \begin{itemize}
+          \item Código REQ15: Creación de la votación $\rightarrow$ El sistema permitirá crear una votación especificando título, tipo de votación y al menos dos opciones.
+          \item Código REQ16: Creación de opciones $\rightarrow$ El sistema permitirá que los usuarios añadan opciones a las decisiones, contando cada una con título y opcionalmente descripción e imagen.
+          \item Código REQ17: Límite de tiempo $\rightarrow$ El creador de la votación podrá fijar un tiempo máximo para que el resto de miembros ejerza su derecho al voto.
+          \item Código REQ18: Mecanismo de votación $\rightarrow$ El sistema permitirá al creador de la votación elegir el tipo de votación, pudiendo elegir entre una lista de opciones como ranking, consenso, pesos, etc.
+          \item Código REQ19: Ganador de la votación $\rightarrow$ Una vez acabado el tiempo destinado a la votación, el sistema calculará automáticamente el ganador según los votos y el método de votación elegido.
+          \item Código REQ20: Mostrar los resultados $\rightarrow$ Al finalizar una votación los miembros podrán visualizar los resultados.
+        \end{itemize}    
+    \item \textit{\uline{Gestión de la aplicación:}}
+        \begin{itemize}
+            \item Código REQ21: Filtrado $\rightarrow$ El sistema contará con sistemas de filtrado y búsqueda mediante APIs o scraping para aportar opciones en la votación.
+            \item Código REQ22: Login $\rightarrow$ Todos los usuarios entrarán al sistema mediante un inicio de sesión compuesto por nombre de usuario y contraseña.
+        \end{itemize}
 \end{itemize}
 
 \subsection{Requisitos no funcionales}
 
 \begin{itemize}
-    \item d
+    \item Código REQ23: Mantenibilidad $\rightarrow$ El código será estructurado y comentado para facilitar futuras modificaciones o ampliaciones.
+    \item Código REQ24: Fiabilidad $\rightarrow$ El sistema deberá tener un funcionamiento estable, minimizando la aparición de errores durante su uso.
+    \item Código REQ25: Robustez $\rightarrow$ El sistema deberá responder adecuadamente ante situaciones inesperadas o entradas incorrectas sin generar fallos en la aplicación.
+    \item Código REQ26: Facilidad de uso $\rightarrow$ La interfaz será intuitiva, permitiendo a los usuarios usarla sin formación previa.
+    \item Código REQ27: Protección de datos $\rightarrow$ Los datos de los usuarios serán protegidos y tratados siguiendo lo establecido en la normativa vigente de protección de datos(\href{https://www.boe.es/buscar/doc.php?id=DOUE-L-2016-80807}{Reglamento General de Protección de Datos (RGPD)} \cite{RGPD} y \href{https://www.boe.es/eli/es/lo/2018/12/05/3/con}{Ley Orgánica 3/2018 de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD)} \cite{LOPDGDD}).
+    \item Código REQ28: Autenticación de usuarios $\rightarrow$ Únicamente podrán acceder al sistema los usuarios autenticados.
+    \item Código REQ29: Compatibilidad multiplataforma $\rightarrow$ La aplicación deberá funcionar en sistemas operativos Android e iOS.
+    \item Código REQ30: Integridad de la información $\rightarrow$ Los datos guardados no deberán perderse ni corromperse ante fallos del sistema.
+    \item Código REQ31: Escalabilidad $\rightarrow$ El sistema deberá soportar el crecimiento del número de usuarios y grupos.
+    \item Código REQ32: Concurrencia $\rightarrow$ El sistema deberá gestionar los votos emitidos simultáneamente por múltiples usuarios sin producir conflictos o pérdida de información. 
+    \item Código REQ33: Sincronización $\rightarrow$ Los cambios producidos en una votación deberán ser transmitidos a todos los usuarios del grupo en un tiempo mínimo.
+    \item Código REQ34: Consistencia de la información $\rightarrow$ Todos los usuarios deberán visualizar el mismo estado y resultado en las votaciones, evitando inconsistencias entre dispositivos.
 \end{itemize}
 
 
 \subsection{Requisitos de interfaces externas}
 
 \begin{itemize}
-    \item Código REQ6: Interfaces de usuario $\rightarrow$ Se podrá comunicar con el usuario para aprovechar los requisitos del sistema, el usuario indicará al sistema las operaciones que desea realizar e introducirá los datos que el sistema le pida.
-    \item Código REQ7: Interfaces del software $\rightarrow$ La comunicación entre los módulos del sistema se realizará mediante bases de datos.
-    \item Código REQ8: Mantenibilidad $\rightarrow$ El sistema será diseñado para que tenga fácil mantenimiento, con el objetivo de que pueda ser ampliado y corregido si es necesario.
+    \item Código REQ35: Interfaces de usuario $\rightarrow$ Se podrá comunicar con el usuario para aprovechar los requisitos del sistema, el usuario indicará al sistema las operaciones que desea realizar e introducirá los datos que el sistema le pida.
+    \item Código REQ36: Interfaces del software $\rightarrow$ La comunicación entre los módulos del sistema se realizará mediante bases de datos.
+    \item Código REQ37: Mantenibilidad $\rightarrow$ El sistema será diseñado para que tenga fácil mantenimiento, con el objetivo de que pueda ser ampliado y corregido si es necesario.
 \end{itemize}
 
 \subsection{Interfaces externas}
 
 \begin{itemize}
-    \item Interfaz de usuario: Será de facil manejo, contando con una interfaz intuitiva. Tendrá una apariencia similar a los bocetos mostrados en las Figuras \ref{fig:boceto_homepage} y \ref{fig:boceto_grupopage}.
+    \item Interfaz de usuario: Será de fácil manejo, contando con una interfaz intuitiva. Tendrá una apariencia similar a los bocetos mostrados en las Figuras \ref{fig:boceto_homepage} y \ref{fig:boceto_grupopage}. Como podemos apreciar, la página principal consta de un menú superior de búsqueda, un menú de navegación inferior y una lista central con los distintos grupos a los que se pertenece. Al acceder a un grupo específico, la vista se organiza verticalmente mostrando primero los datos del grupo junto con su navegación, seguidos de la sección de decisiones y finalmente el menú de navegación global.
+    
 
     \begin{figure}[ht]
         \centering

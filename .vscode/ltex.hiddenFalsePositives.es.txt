@@ -1,0 +1,26 @@
+{"rule":"SIGLAS","sentence":"^\\QCódigo REQ6: Filtrado \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-|Dummy\\+|Dummy's\\+)[0-9]+\\Q El sistema contará con sistemas de filtrado y búsqueda mediante APIs o scraping para aportar opciones en la votación. Código REQ7: Perfil del usuario \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-|Dummy\\+|Dummy's\\+)[0-9]+\\Q El usuario dispondrá de una cuenta personal asociada a él que podrá crear, modificar y eliminar.\\E$"}
+{"rule":"SIGLAS","sentence":"^\\QCódigo F1: Gestión de una base de datos (permitiendo insertar, actualizar y eliminar) en la que se almacenan los miembros de cada grupo, las opciones de cada decisión por defecto y la información de los usuarios y su rol en la aplicación. Código F2: Devolver información filtrada sobre ocio a través de APIs y/o scraping.\\E$"}
+{"rule":"AGREEMENT_POSTPONED_ADJ","sentence":"^\\Q\\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-|Dummy\\+|Dummy's\\+)[0-9]+\\Q \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-|Dummy\\+|Dummy's\\+)[0-9]+\\Q (\\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-|Dummy\\+|Dummy's\\+)[0-9]+\\Q): Plataforma Backend-as-a-Service de código abierto basada en PostgreSQL.\\E$"}
+{"rule":"CAPITALIZATION_AFTER_QUESTION_MARK","sentence":"^\\QRank it! empate\\E$"}
+{"rule":"CAPITALIZATION_AFTER_QUESTION_MARK","sentence":"^\\QRank it! página principal\\E$"}
+{"rule":"EN_BASE_A","sentence":"^\\QUna vez creada la actividad, todos los miembros de un grupo podrán sugerir opciones propuestas por ellos mismos o sugeridas por la aplicación en base a sus preferencias.\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Q[LO] [RE] [RO,LE]\\E$"}
+{"rule":"SPACE_UNITIES","sentence":"^\\Qframe=Ltb, framerule=0.5pt, aboveskip=0.5cm, framextopmargin=3pt, framexbottommargin=3pt, framexleftmargin=0.1cm, framesep=0pt, rulesep=.4pt, backgroundcolor=, rulesepcolor=, stringstyle=, showstringspaces = false, basicstyle=, commentstyle=, keywordstyle=, numbers=left, numbersep=6pt, numberstyle=, numberfirstline = false, breaklines=true, listing[1][] #1[0] [0]\\E$"}
+{"rule":"AGREEMENT_PARTICIPLE_NOUN","sentence":"^\\Q.NET Logo (obtenido vía vectorlogo.zone)\\E$"}
+{"rule":"AGREEMENT_PARTICIPLE_NOUN","sentence":"^\\QReact Native Logo (obtenido vía vectorlogo.zone)\\E$"}
+{"rule":"AGREEMENT_PARTICIPLE_NOUN","sentence":"^\\QNativeScript Logo (obtenido vía brandfetch.com)\\E$"}
+{"rule":"AGREEMENT_PARTICIPLE_NOUN","sentence":"^\\QFlask Logo (obtenido vía vectorlogo.zone)\\E$"}
+{"rule":"AGREEMENT_PARTICIPLE_NOUN","sentence":"^\\QExpress Logo (obtenido vía vectorlogo.zone)\\E$"}
+{"rule":"AGREEMENT_PARTICIPLE_NOUN","sentence":"^\\QNest Logo (obtenido vía vectorlogo.zone)\\E$"}
+{"rule":"AGREEMENT_PARTICIPLE_NOUN","sentence":"^\\QRuby on Rails Logo (obtenido vía vectorlogo.zone)\\E$"}
+{"rule":"AGREEMENT_PARTICIPLE_NOUN","sentence":"^\\QMySQL Logo (obtenido vía vectorlogo.zone)\\E$"}
+{"rule":"AGREEMENT_PARTICIPLE_NOUN","sentence":"^\\QMariaDB Logo (obtenido vía vectorlogo.zone)\\E$"}
+{"rule":"AGREEMENT_PARTICIPLE_NOUN","sentence":"^\\QSQLite Logo (obtenido vía vectorlogo.zone)\\E$"}
+{"rule":"AGREEMENT_PARTICIPLE_NOUN","sentence":"^\\QRedis Logo (obtenido vía brandfetch.com)\\E$"}
+{"rule":"CAPITALIZATION_AFTER_QUESTION_MARK","sentence":"^\\QRank it! página principal Rank it! empate Diferentes vistas de la aplicación Rank it!\\E$"}
+{"rule":"ES_QUESTION_MARK","sentence":"^\\QPágina principal Empate Diferentes vistas de la aplicación Rank it!\\E$"}
+{"rule":"AGREEMENT_ADJ_NOUN","sentence":"^\\QCódigo REQ7: Añadir usuarios \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-|Dummy\\+|Dummy's\\+)[0-9]+\\Q Los miembros de un grupo podrán añadir a otros miembros.\\E$"}
+{"rule":"AGREEMENT_ADJ_NOUN","sentence":"^\\QEliminar usuarios Gestión de las votaciones:\\E$"}
+{"rule":"AGREEMENT_ADJ_NOUN","sentence":"^\\QEliminar usuarios \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-|Dummy\\+|Dummy's\\+)[0-9]+\\Q Los miembros de un grupo podrán eliminar a otros miembros.\\E$"}
+{"rule":"AGREEMENT_ADJ_NOUN","sentence":"^\\QCódigo REQ11: Añadir usuarios \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-|Dummy\\+|Dummy's\\+)[0-9]+\\Q Los miembros de un grupo podrán añadir a otros miembros.\\E$"}
+{"rule":"AGREEMENT_ADJ_NOUN","sentence":"^\\QCódigo REQ12: Eliminar usuarios \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-|Dummy\\+|Dummy's\\+)[0-9]+\\Q Los miembros de un grupo podrán eliminar a otros miembros.\\E$"}
