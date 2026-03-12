@@ -26,10 +26,26 @@ La aplicación facilitará la toma de decisiones dentro de un grupo social, pudi
 En este apartado, vamos a proporcionar una visión general del sistema. Con el objetivo, de determinar las funciones principales, datos necesarios y restricciones que afecten al desarrollo.
 
 \subsection{Perspectiva del producto}
-
+\begin{comment}
 El sistema hará uso de una base de datos en la que se recogerá y guardará información relativa a los grupos y los distintos usuarios de la aplicación. \\
 
 La interacción de los usuarios se llevará a cabo mediante una interfaz gráfica, la cual podrá ser accedida mediante una pantalla táctil.
+\end{comment}
+
+En la Figura \ref{fig:diagramapersproducto} se muestra la interacción entre los distintos componentes de la aplicación. Como podemos observar, la arquitectura se compone de tres elementos principales: el front-end desarrollado en Flutter, el back-end proporcionado por Supabase y el sistema de base de datos PostgreSQL. \\
+
+El front-end se encarga de la interfaz de usuario con la que interactúan los usuarios a través de una pantalla táctil. Para ello, envía peticiones al back-end mediante solicitudes HTTPS en formato JSON. \\
+
+El back-end gestiona la autenticación, la lógica de acceso a los datos y las funcionalidades de actualización en tiempo real. \\
+
+Finalmente, los datos se almacenan en una base de datos PostgreSQL, donde se aplican políticas de seguridad a nivel de fila RLS (Row Level Security) para garantizar el acceso controlado a la información. \\
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=\tamInterfaz\textwidth]{figuras/DiagramaPerspectivaProducto.png}
+        \caption{Diagrama de interacción del sistema}
+        \label{fig:diagramapersproducto}
+    \end{figure}
 
 \subsection{Funciones del Producto}
 
