@@ -119,7 +119,7 @@ Se asume que el sistema operativo de destino es Android o iOS y que estará disp
           \item Código REQ6: Creación de administrador $\rightarrow$ Para crear un administrador otro administrador deberá cambiar el rol de un usuario de cliente a administrador.
           \item Código REQ7: Eliminación de administrador $\rightarrow$ Para eliminar un administrador otro administrador deberá cambiarle el rol a cliente.
           \item Código REQ8: Registro de decisión $\rightarrow$ El administrador podrá registrar decisiones por defecto y guardarlas en la base de datos. Para ello, tendrá como mínimo que rellenar el ID de la decisión, el título y la lista de opciones.  
-          \item Código REQ9: Gestión de datos $\rightarrow$ El administrador podrá modificar o eliminar la información almacena en el sistema.
+          \item Código REQ9: Gestión de datos $\rightarrow$ El administrador podrá modificar o eliminar la información almacenada en el sistema.
         \end{itemize}
     \item \textit{\uline{Gestión de los grupos:}} 
         \begin{itemize}
@@ -173,22 +173,27 @@ Se asume que el sistema operativo de destino es Android o iOS y que estará disp
 \subsection{Interfaces externas}
 
 \begin{itemize}
-    \item Interfaz de usuario: Será de fácil manejo, contando con una interfaz intuitiva. Tendrá una apariencia similar a los bocetos mostrados en las Figuras \ref{fig:boceto_homepage} y \ref{fig:boceto_grupopage}. Como podemos apreciar, la página principal consta de un menú superior de búsqueda, un menú de navegación inferior y una lista central con los distintos grupos a los que se pertenece. Al acceder a un grupo específico, la vista se organiza verticalmente mostrando primero los datos del grupo junto con su navegación, seguidos de la sección de decisiones y finalmente el menú de navegación global.
+    \item Interfaz de usuario: Será de fácil manejo, contando con una interfaz intuitiva. Tendrá una apariencia similar a los bocetos mostrados en la Figura~\ref{fig:primerboceto}. Como podemos apreciar, la página principal consta de un menú superior de búsqueda, un menú de navegación inferior y una lista central con los distintos grupos a los que se pertenece. Al acceder a un grupo específico, la vista se organiza verticalmente mostrando primero los datos del grupo junto con su navegación, seguidos de la sección de decisiones y finalmente el menú de navegación global.
     
-
-    \begin{figure}[ht]
+    \begin{figure}
         \centering
-        \includegraphics[width=\tamApps\textwidth]{figuras/bocetos/homepage.png}
-        \caption{Boceto de la página principal}
-        \label{fig:boceto_homepage}
+        \begin{subfigure}[t]{0.35\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/bocetos/homepage.png}
+            \caption{Página principal}
+            \label{fig:primerboceto_homepage}
+        \end{subfigure}
+        \hspace{0.5cm}
+        \begin{subfigure}[t]{0.35\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/bocetos/grupopage.png}
+            \caption{Página principal de un grupo}
+            \label{fig:primerboceto_grupopage}
+        \end{subfigure}
+        \caption{Bocetos de la aplicación}
+        \label{fig:primerboceto}
     \end{figure}
 
-    \begin{figure}[ht]
-        \centering
-        \includegraphics[width=\tamApps\textwidth]{figuras/bocetos/grupopage.png}
-        \caption{Boceto de la página principal de un grupo}
-        \label{fig:boceto_grupopage}
-    \end{figure}
     
     \item Interfaz hardware: Será desarrollado para poder usarse con una pantalla táctil. Asimismo, no hará falta una interfaz hardware específica para ejecutarlo.
     \item Interfaz software: La interfaz software utilizada será la proporcionada por los Sistemas Operativos que vamos a utilizar, en este caso Android e iOS. 

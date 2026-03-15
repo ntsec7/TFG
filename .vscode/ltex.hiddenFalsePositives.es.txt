@@ -32,3 +32,4 @@
 {"rule":"COMMA_MARCADOR_DISCURSIVO","sentence":"^\\QTal como hemos explicado anteriormente, las iteraciones que vamos a seguir tienen una longitud de dos semanas, componiendo por tanto el trabajo de diez iteraciones.\\E$"}
 {"rule":"COMMA_MARCADOR_DISCURSIVO","sentence":"^\\QEste trabajo se inició el día dos de febrero y será entregado el veintidos de junio, teniendo por tanto una duración total de 20 semanas.\\E$"}
 {"rule":"AGREEMENT_ADJ_NOUN","sentence":"^\\QCrear usuarios \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-|Dummy\\+|Dummy's\\+)[0-9]+\\Q Se crearán los perfiles de cliente y administrados, pudiendo iniciar y cerrar sesión en ambos.\\E$"}
+{"rule":"PHRASE_REPETITION","sentence":"^\\QPágina principal Página principal de un grupo Bocetos de la aplicación\\E$"}
