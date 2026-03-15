@@ -8,45 +8,187 @@ Las tareas se organizarán en historias de usuario que se desarrollarán en spri
 
 \section{Cálculo de la velocidad}
 
+La velocidad representa la cantidad de puntos de historia que se pueden desarrollar en cada iteración. Las iteraciones que vamos a marcar tendrán una duración de dos semanas, lo que equivale a diez días laborales. \\
+
+Dado que el proyecto será desarrollado por un único programador y suponiendo que un punto de historia es un día de trabajo ideal, se introduce además un factor de dedicación del 80\%, que tiene en cuenta posibles interrupciones o tareas no directamente relacionadas con el desarrollo. \\
+
+Teniendo todos esos factores en cuenta, la velocidad estimada del proyecto es de 8 puntos de historia por iteración.
+
+\[
+\begin{aligned}
+\text{Velocidad} &= \text{Nº de programadores} \times \text{Días} \times \text{Factor de dedicación} \\
+&= 1 \times 10 \times 80\% \\
+&= 8 \text{ PH}
+\end{aligned}
+\]
+
 \section{Historias de usuario}
 A continuación se expone un listado con todas las historias de usuario que contiene la aplicación:
 
 \begin{itemize}
-    \item Código HU1: Como cliente quiero poder crearme un perfil para poder usar la aplicación.
-    \item Código HU2: Como cliente quiero poder editar mi perfil para modificar datos erroneos.
-    \item Código HU3: Como cliente quiero poder eliminar mi perfil para eliminar mis datos de la aplicación.
-    \item Código HU4: Como cliente quiero poder iniciar sesión en la aplicación para poder tomar decisiones.
-    \item Código HU5: Como cliente quiero poder cerrar sesión en la aplicación para que nadie más pueda acceder a mi cuenta.
-    \item Código HU6: Como cliente quiero poder crear un grupo para tomar decisiones con mis amigos.
-    \item Código HU7: Como cliente quiero poder salirme de un grupo para dejar de formar parte de él.
-    \item Código HU8: Como cliente quiero poder añadir miembros a un grupo para añadirlos en la toma de decisiones.
-    \item Código HU9: Como cliente quiero poder eliminar miembros de un grupo para que dejen de formar parte del grupo
-    \item Código HU10: Como cliente quiero poder iniciar una votación para tomar una decisión.
-    \item Código HU11: Como cliente quiero asignarle un tiempo máximo a una votación para recibir los resultados en tiempo limitado.
-    \item Código HU12: Como cliente quiero poder votar en las votaciones para tener derecho de elección.
-    \item Código HU13: Como cliente quiero poder añadir opciones a una votación para poder votarlas posteriormente.
-    \item Código HU14: Como cliente quiero poder elegir el tipo de votación para adaptarlo a mis necesidades.
-    \item Código HU15: Como cliente quiero ver las decisiones pasadas para recordar las elecciones tomadas.
-    \item Código HU16: Como cliente quiero ver la opción ganadora en una votación para saber qué decisión tomar. 
-    \item Código HU17: Como cliente quiero poder seleccionar decisiones predeterminadas para facilitar mi toma de decisiones.
-    \item Código HU18: Como cliente quiero poder subir imágenes a la aplicación para usarlas en las opciones o como foto de perfil o grupo.
-    \item Código HU19: Como administrador quiero poder crear otro administrador para que me ayude en las tareas de gestión.
-    \item Código HU20: Como administrador quiero poder eliminar a otro administrador para que no pueda hacer cambios en la aplicación.
-    \item Código HU21: Como administrador quiero poder iniciar sesión en la aplicación para hacer tareas de gestión.
-    \item Código HU22: Como administrador quiero poder cerrar sesión en la aplicación para que nadie más pueda acceder a mi cuenta.
-    \item Código HU23: Como administrador quiero poder modificar los datos de un usuario para solucionar problemas de gestión.
-    \item Código HU24: Como administrador quiero poder modificar datos de un grupo para solucionar problemas de gestión.
-    \item Código HU25: Como administrador quiero poder modificar datos de una votación para solucionar problemas de gestión.
-    \item Código HU26: Como administrador quiero poder eliminar un usuario para solucionar problemas de gestión.
-    \item Código HU27: Como administrador quiero poder eliminar un grupo para solucionar problemas de gestión.
-    \item Código HU28: Como administrador quiero poder eliminar una votación para solucionar problemas de gestión.
-    \item Código HU29: Como administrador quiero poder realizar las tareas de un cliente para cercionarme de errores.
+    \item Código HU1: Como cliente quiero poder crearme un perfil para poder usar la aplicación. (2PH)
+    \item Código HU2: Como cliente quiero poder editar mi perfil para modificar datos erróneos. (1PH)
+    \item Código HU3: Como cliente quiero poder eliminar mi perfil para eliminar mis datos de la aplicación. (1PH)
+    \item Código HU4: Como cliente quiero poder iniciar sesión en la aplicación para acceder a sus funcionalidades. (1PH)
+    \item Código HU5: Como cliente quiero poder cerrar sesión en la aplicación para que nadie más pueda acceder a mi cuenta. (1PH)
+    \item Código HU6: Como cliente quiero poder crear un grupo para tomar decisiones con mis amigos. (3PH)
+    \item Código HU7: Como cliente quiero poder abandonar un grupo para dejar de formar parte de él. (1PH)
+    \item Código HU8: Como cliente quiero poder añadir miembros a un grupo para añadirlos en la toma de decisiones. (1PH)
+    \item Código HU9: Como cliente quiero poder eliminar miembros de un grupo para que dejen de formar parte del grupo. (1PH)
+    \item Código HU10: Como cliente quiero poder iniciar una votación para tomar una decisión. (4PH)
+    \item Código HU11: Como cliente quiero asignarle un tiempo máximo a una votación para recibir los resultados en un tiempo limitado. (1PH)
+    \item Código HU12: Como cliente quiero poder eliminar una votación para cancelar una decisión. (1PH)
+    \item Código HU13: Como cliente quiero poder ver las votaciones activas en los grupos a los que pertenezco para poder votar en ellas. (2PH)
+    \item Código HU14: Como cliente quiero poder votar en las votaciones para tener derecho de elección. (2PH)
+    \item Código HU15: Como cliente quiero poder añadir opciones a una votación para poder votarlas posteriormente. (2PH)
+    \item Código HU16: Como cliente quiero poder elegir el tipo de votación para adaptarlo a mis necesidades. (4PH)
+    \item Código HU17: Como cliente quiero ver las decisiones pasadas para recordar las elecciones tomadas. (2PH)
+    \item Código HU18: Como cliente quiero ver la opción ganadora en una votación para conocer la decisión final. (2PH)
+    \item Código HU19: Como cliente quiero poder seleccionar decisiones predeterminadas para facilitar mi toma de decisiones. (2PH)
+    \item Código HU20: Como cliente quiero poder subir imágenes a la aplicación para usarlas en las opciones o como foto de perfil o grupo. (1PH)
+    \item Código HU21: Como administrador quiero poder crear otro administrador para que me ayude en las tareas de gestión. (2PH)
+    \item Código HU22: Como administrador quiero poder eliminar a otro administrador para revocar sus permisos de administración. (1PH)
+    \item Código HU23: Como administrador quiero poder editar mi perfil para modificar datos erróneos. (1PH)
+    \item Código HU24: Como administrador quiero poder iniciar sesión en la aplicación para hacer tareas de gestión. (1PH)
+    \item Código HU25: Como administrador quiero poder cerrar sesión en la aplicación para que nadie más pueda acceder a mi cuenta. (1PH)
+    \item Código HU26: Como administrador quiero poder modificar los datos de un usuario para solucionar problemas de gestión. (1PH)
+    \item Código HU27: Como administrador quiero poder modificar datos de un grupo para solucionar problemas de gestión. (1PH)
+    \item Código HU28: Como administrador quiero poder modificar datos de una votación para solucionar problemas de gestión. (1PH)
+    \item Código HU29: Como administrador quiero poder eliminar un usuario para solucionar problemas de gestión. (1PH)
+    \item Código HU30: Como administrador quiero poder eliminar un grupo para solucionar problemas de gestión. (1PH)
+    \item Código HU31: Como administrador quiero poder eliminar una votación para solucionar problemas de gestión. (1PH)
+    \item Código HU32: Como administrador quiero poder realizar las tareas de un cliente para comprobar posibles errores en la aplicación. (1PH)
 \end{itemize}    
 
 
 \section{Planificación temporal}
 
+Este trabajo se inició el día 2 de febrero y será entregado el día 22 de junio, por lo que tendrá una duración total de 20 semanas. Tal como se ha explicado anteriormente, las iteraciones tendrán una longitud de dos semanas, lo que da lugar a un total de 10 iteraciones a lo largo del proyecto. 
+
+Las cuatro primeras iteraciones estuvieron dedicadas exclusivamente a la elaboración de la documentación. No obstante, la documentación se continuará desarrollando de forma paralela a la implementación durante todo el proyecto.
+
+A continuación, se describen las iteraciones:
+\begin{itemize}
+    \item 1ª iteración: Introducción $\rightarrow$ Se elaborarón la introducción y el estado del arte correpondientes al primer y segundo capítulo respectivamente de la documentación. 
+    \item 2ª iteración: Requisitos $\rightarrow$ Se realizó la especificación de requisitos correspondiente al tercer capítulo de la documentación.
+    \item 3ª iteración: Planificación $\rightarrow$ Se especificó la planificación correspondiente a este cuarto capítulo de la documentación.
+    \item 4ª iteración: Análisis $\rightarrow$ Se realizará la documentación relativa al quinto capítulo de la documentación.
+    \item 5ª iteración: Creación de usuarios $\rightarrow$ Se implementará la creación de los perfiles de cliente y administrador, permitiendo iniciar y cerrar sesión en el sistema.
+    \item 6ª iteración: Edición de usuarios y creación de grupos $\rightarrow$ Se permitirá editar y eliminar ambos tipos de usuario, además de implementar la creación de grupos.
+    \item 7ª iteración: Edición y subida de imágenes $\rightarrow$ Se añadirán opciones de administración, añadir imágenes y funcionalidades para la edición de grupos. 
+    \item 8ª iteración: Votaciones $\rightarrow$ Se implementará el sistema de votaciones.
+    \item 9ª iteración: Edición y votación $\rightarrow$ Se añadirán opciones de edición en las votaciones y se habilitará el voto y la sugerencia de opciones.
+    \item 10ª iteración: Historial y predeterminado $\rightarrow$ Se permirtirá consultar el historial y el resultado ganador en las votaciones. Además, se añadirán votaciones predeterminadas y nuevas opciones de administración.
+\end{itemize}
+
+
 \section{Diagrama de Gantt}
 
+A continuación, exponemos un diagrama de Gantt donde se puede observar la correspondencia entre las iteraciones y las historias de usuario.
 
 \section{Estimación de costes}
+
+Se va a calcular la estimación de costes, siguiendo un modelo de presupuesto desglosado en coceptos.
+
+\subsection{Honorarios}
+
+Para la estimación de este apartado, tal como se puede observar en la Tabla~\ref{tab:honorarios}, se han tenido en cuenta distinos aspectos, que se desglosan a continuación.
+
+Para el cálculo de la nómina, se ha tenido en cuenta el salario de un programador junior a jornada completa en España, que varía entre 15.000 € y 30.000 € anuales. En nuestros cálculos se utiliza el valor medio de 24.000 €, lo que corresponde a un salario mensual de 1.714,28 € para una jornada completa. \\
+
+En este caso, se va a realizar un trabajo a media jornada, por lo tanto, se destinará la mitad del dinero de jornada completa. Dando en total un salario bruto mensual de 857,14 €. \\
+
+Los empleados no dispondrán de ningún plus ni complementos salariales. \\
+
+En lo respectivo a las deducciones salariales de un empleado en España, el porcentaje de cotización a la Seguridad social ronda el 6,45\%. Por otra parte, la cuota patronal para un contrato temporal se sitúa aproximadamente en el 32,6\%, mientras que el IRPF para personas solteras, sin hijos y con salario bruto medio-bajo se ha estimado en un 9\%. \\
+
+En cuanto al seguro de vida, se ha comprobado que no es obligatorio; sin embargo, la mayoría de las empresas lo incluyen como benefício adicional. Se ha comprobado que el rango mensual se sitúa entre 4 y 20 €, por lo que se utilizará un valor intermedio de 10 €. \\
+
+La retención en especie es calculada mediante el coste de las distintas retenciones en especie, en este caso únicamente el seguro de vida, multiplicado por el porcentaje de IRPF. Dicho porcentaje se obtiene dividiendo el total del IRPF entre la base bruta sujeta a IRPF, que en este caso corresponde al salario base más el valor del seguro de vida. \\
+
+Sobre el salario bruto mensual de 857,14 €, trás aplicar las deducciones correspondientes a la Seguridad Social y al IRPF, se obtiene una nómina mensual de 719,54 €. Sumando la cuota patronal, el coste total para la empresa asciende a 997,11 € mensuales. \\
+
+Teniendo en cuenta que la empresa está compuesta por un único trabajador con un contrato de cinco meses de duración, el coste destinado a honorarios asciende a 4.985,55 €.
+
+\begin{table}[h]
+\centering
+\rowcolors{2}{grisfila}{white}
+
+\begin{tabular}{lc}
+\toprule
+\rowcolor{grisfila}
+\textbf{Honorarios} & \textbf{Coste (€)} \\
+\midrule
+Salario Base & 851,14 \\
+Complemento Puesto de Trabajo & 0 \\
+Antigüedad & 0 \\
+Plus Transporte	& 0 \\
+Plus Exclusividad & 0 \\
+Salario Base Vac. & 0 \\
+Vaca Puesto de Trabajo & 0 \\
+Antigüedad Vac. & 0 \\
+Vacac Plus Exclusi & 0 \\
+Seguridad Social & 54,90 \\
+R.E. Seguro Vida C & 10 \\
+Cuota patronal & 277,47 \\
+IRPF & 77 \\
+Retención Especie & 0,89 \\
+Neto & 719,64 \\
+Total mensual \\ 997,11 \\
+\midrule
+\textbf{Total} & \textbf{4.985,55} \\
+\bottomrule
+\end{tabular}
+
+\caption{Estimación de honorarios}
+\label{tab:honorarios}
+\end{table}
+
+\subsection{Entidades y personal subcontratados}
+Este apartado no cuenta con presupuesto asignado, ya que todo el trabajo será realizado por el personal del propio proyecto.
+
+\subsection{Adquisición de equipamiento para las actividades previstas en el proyecto}
+
+Para la elaboración de bocetos, diagramas de Gantt, planificaciones, uso de entornos de desarrollo, etc. como Figma, Visual Studio Code o Jira, se emplearán herramientas gratuitas o licencias de estudiante, por lo cual no será necesario presupuesto en este apartado. \\
+
+Asmimismo, dadas las características del proyecto, el plan gratuito de Supabase se adapta completamente a las necesidades del sistema, por lo que no será necesario contratar un servidor de pago. \\
+
+En cuanto al coste de los dispositivos electrónicos destinados al desarrollo del proyecto, se ha estimado que el ordenador utilizado consta de un valor aproximado de 500 € y dispone de una vida útil de cuatro años. Considerando que el proyecto tendrá una duración de cinco meses, el coste que supondrá es de 52,08 €. \\
+
+En total, el presupuesto para adquisición de equipamiento para las actividades previstas en el proyecto es de 52,08 €.
+
+
+\subsection{Promoción y difusión del proyecto}
+
+Dado que se trata de un proyecto académico que no cuenta con un ámbito comercial posterior, no se destinará presupuesto a actividades de promoción o difusión.
+
+\subsection{Costes indirectos}
+
+Puesto que el proyecto será desarrollado mediante teletrabajo, se incluye un apartado de consumibles, para suplir los gastos relativos a aspectos como la luz, conexión a internet o climatización. Tras consultar el precio medio de estos servicios en España, se ha estimado un gasto mensual de 30 €. Por tanto, para los cinco meses de duración del proyecto se asigna un total de 150 €.
+
+\subsection{Total}
+
+Teniendo en cuenta todos los apartados descritos anteriormente, el presupuesto total estimado para la realización del proyecto asciende a 5.187,63 €, tal como se aprecia en la Tabla~\ref{tab:presupuestototal}. \\
+
+\begin{table}[h]
+\centering
+\rowcolors{2}{grisfila}{white}
+
+\begin{tabular}{lc}
+\toprule
+\rowcolor{grisfila}
+\textbf{Concepto} & \textbf{Coste (€)} \\
+\midrule
+Honorarios & 4.985,55 \\
+Entidades y personal subcontratados & 0 \\
+Equipamiento & 52,08 \\
+Promoción y difusión & 0\\
+Costes indirectos & 150 \\
+\midrule
+\textbf{Total} & \textbf{5.187,63} \\
+\bottomrule
+\end{tabular}
+
+\caption{Estimación de costes del proyecto}
+\label{tab:presupuestototal}
+\end{table}
