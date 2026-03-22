@@ -2,47 +2,49 @@ This is BibTeX, Version 0.99e
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: proyecto.aux
 Reallocating 'name_of_file' (item size: 1) to 26 items.
+Reallocating 'name_of_file' (item size: 1) to 21 items.
 Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: unsrt.bst
 Database file #1: bibliografia/bibliografia.bib
-You've used 34 entries,
+Database file #2: bibliografia/figuras.bib
+You've used 40 entries,
             1791 wiz_defined-function locations,
-            592 strings with 7754 characters,
-and the built_in function-call counts, 4714 in all, are:
-= -- 442
-> -- 136
+            616 strings with 8370 characters,
+and the built_in function-call counts, 5542 in all, are:
+= -- 520
+> -- 160
 < -- 0
-+ -- 68
-- -- 34
-* -- 36
-:= -- 759
-add.period$ -- 136
-call.type$ -- 34
-change.case$ -- 34
++ -- 80
+- -- 40
+* -- 42
+:= -- 891
+add.period$ -- 160
+call.type$ -- 40
+change.case$ -- 40
 chr.to.int$ -- 0
-cite$ -- 34
-duplicate$ -- 170
-empty$ -- 613
-format.name$ -- 34
-if$ -- 1123
+cite$ -- 40
+duplicate$ -- 200
+empty$ -- 721
+format.name$ -- 40
+if$ -- 1321
 int.to.chr$ -- 0
-int.to.str$ -- 34
+int.to.str$ -- 40
 missing$ -- 0
-newline$ -- 207
-num.names$ -- 34
-pop$ -- 204
+newline$ -- 243
+num.names$ -- 40
+pop$ -- 240
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 67
+skip$ -- 79
 stack$ -- 0
 substring$ -- 0
-swap$ -- 34
+swap$ -- 40
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 34
-width$ -- 36
-write$ -- 410
+while$ -- 40
+width$ -- 42
+write$ -- 482

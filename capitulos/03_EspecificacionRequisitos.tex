@@ -43,7 +43,7 @@ Finalmente, los datos se almacenan en una base de datos PostgreSQL, donde se apl
     \begin{figure}[ht]
         \centering
         \includegraphics[width=\tamInterfaz\textwidth]{figuras/DiagramaPerspectivaProducto.png}
-        \caption{Diagrama de interacción del sistema}
+        \caption{Diagrama de interacción del sistema \cite{flutterlogo} \cite{supabaselogo} \cite{postgresqllogo} \cite{iconoui} \cite{iconoescudo} \cite{iconodb}}
         \label{fig:diagramapersproducto}
     \end{figure}
 
@@ -132,16 +132,17 @@ Se asume que el sistema operativo de destino es Android o iOS y que estará disp
     \item \textit{\uline{Gestión de las votaciones:}} 
         \begin{itemize}
           \item Código REQ15: Creación de la votación $\rightarrow$ El sistema permitirá crear una votación especificando título, tipo de votación y al menos dos opciones.
-          \item Código REQ16: Creación de opciones $\rightarrow$ El sistema permitirá que los usuarios añadan opciones a las decisiones, contando cada una con título y opcionalmente descripción e imagen.
-          \item Código REQ17: Límite de tiempo $\rightarrow$ El creador de la votación podrá fijar un tiempo máximo para que el resto de miembros ejerza su derecho al voto.
-          \item Código REQ18: Mecanismo de votación $\rightarrow$ El sistema permitirá al creador de la votación elegir el tipo de votación, pudiendo elegir entre una lista de opciones como ranking, consenso, pesos, etc.
-          \item Código REQ19: Ganador de la votación $\rightarrow$ Una vez acabado el tiempo destinado a la votación, el sistema calculará automáticamente el ganador según los votos y el método de votación elegido.
-          \item Código REQ20: Mostrar los resultados $\rightarrow$ Al finalizar una votación los miembros podrán visualizar los resultados.
+          \item Código REQ16: Eliminación de la votación $\rightarrow$ El sistema permitirá eliminar una votación activa.
+          \item Código REQ17: Creación de opciones $\rightarrow$ El sistema permitirá que los usuarios añadan opciones a las decisiones, contando cada una con título y opcionalmente descripción e imagen.
+          \item Código REQ18: Límite de tiempo $\rightarrow$ El creador de la votación podrá fijar un tiempo máximo para que el resto de miembros ejerza su derecho al voto.
+          \item Código REQ19: Mecanismo de votación $\rightarrow$ El sistema permitirá al creador de la votación elegir el tipo de votación, pudiendo elegir entre una lista de opciones como ranking, consenso, pesos, etc.
+          \item Código REQ20: Ganador de la votación $\rightarrow$ Una vez acabado el tiempo destinado a la votación o habiendo votado todos los miembros, el sistema calculará automáticamente el ganador según los votos y el método de votación elegido.
+          \item Código REQ21: Mostrar los resultados $\rightarrow$ Al finalizar una votación los miembros podrán visualizar los resultados.
         \end{itemize}    
     \item \textit{\uline{Gestión de la aplicación:}}
         \begin{itemize}
-            \item Código REQ21: Filtrado $\rightarrow$ El sistema contará con sistemas de filtrado y búsqueda mediante APIs o scraping para aportar opciones en la votación.
-            \item Código REQ22: Login $\rightarrow$ Todos los usuarios entrarán al sistema mediante un inicio de sesión compuesto por nombre de usuario y contraseña.
+            \item Código REQ22: Filtrado $\rightarrow$ El sistema contará con sistemas de filtrado y búsqueda mediante APIs o scraping para aportar opciones en la votación.
+            \item Código REQ23: Login $\rightarrow$ Todos los usuarios entrarán al sistema mediante un inicio de sesión compuesto por nombre de usuario o correo electrónico y contraseña.
         \end{itemize}
 \end{itemize}
 

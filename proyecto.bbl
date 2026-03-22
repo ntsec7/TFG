@@ -1,5 +1,41 @@
 \begin{thebibliography}{10}
 
+\bibitem{flutterlogo}
+{Flutter}.
+\newblock Flutter brand guidelines.
+\newblock \url{https://flutter.dev/brand}, 2026.
+\newblock Accedido el 17 de febrero de 2026.
+
+\bibitem{supabaselogo}
+{Supabase Inc.}
+\newblock Supabase logo.
+\newblock \url{https://supabase.com/brand-assets}, 2026.
+\newblock Accedido el 4 de marzo de 2026.
+
+\bibitem{postgresqllogo}
+{The PostgreSQL Global Development Group}.
+\newblock Postgresql logo.
+\newblock \url{https://www.postgresql.org/about/press/presskit16/base/}, 2026.
+\newblock Accedido el 23 de febrero de 2026.
+
+\bibitem{iconoui}
+{Flaticon}.
+\newblock Icono de interfaz de usuario.
+\newblock \url{https://www.flaticon.com/free-icon/prototype_4661375}, 2026.
+\newblock Accedido el 12 de marzo de 2026.
+
+\bibitem{iconoescudo}
+{Flaticon}.
+\newblock Icono de escudo.
+\newblock \url{https://www.flaticon.com/free-icon/shield_8777581}, 2026.
+\newblock Accedido el 12 de marzo de 2026.
+
+\bibitem{iconodb}
+{Flaticon}.
+\newblock Icono de base de datos.
+\newblock \url{https://www.flaticon.com/free-icon/database_9850774}, 2026.
+\newblock Accedido el 12 de marzo de 2026.
+
 \bibitem{fever2026home}
 Fever.
 \newblock Fever - descubre los mejores eventos en tu ciudad.
