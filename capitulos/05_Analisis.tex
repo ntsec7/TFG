@@ -169,6 +169,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item La cuenta se borra del sistema.
         \item Los datos asociados de la cuenta se borran del sistema.
+        \item Al borrar la cuenta se redirige a la pantalla de inicio de sesión.
     \end{enumerate}
 \end{hu_card}
 
@@ -210,7 +211,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \begin{tabularx}{\linewidth}{l X}
         \textbf{Prioridad:}   & 4 \\
         \textbf{Estimación:}  & 1 PH \\
-        \textbf{RF Relacionados:} & REQ23\\
+        \textbf{RF Relacionados:} & REQ24\\
     \end{tabularx}
 
     \vspace{2mm}
@@ -249,6 +250,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
 
     \textbf{Descripción Detallada:} \\
     Permitirá a un cliente crear un grupo con el objetivo de poder hacer votaciones en común con otros clientes.
+
     \vspace{2mm}
     \textbf{Tareas:}
     \begin{itemize}[noitemsep, topsep=0pt]
@@ -318,6 +320,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
         \item Se actualiza la interfaz del grupo con el número y nombre de los miembros.
         \item Se actualiza la interfaz de la lista de grupos al nuevo miembro.
         \item Se guarda la relación entre el nuevo miembro y el grupo en el sistema.
+        \item Crear la interfaz de añadir nuevos miembros.
     \end{itemize}
 
     \vspace{2mm}
@@ -342,7 +345,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Un miembro de un grupo podrá eliminar a otro miembro del mismo, dejando de formar parte de él hasta que un usuario perteneciente al mismo volvierá a añadirlo.
+    Un miembro de un grupo podrá eliminar a otro miembro del mismo, dejando de formar parte de él hasta que un usuario perteneciente al mismo volvierá a añadirlo. Al usuario eliminado dejará de salirle el grupo en la lista de grupos.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -357,6 +360,8 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Pruebas de Validación (Criterios de Aceptación):}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item Se elimina en la base de datos la relación de pertenencia entre el cliente y el grupo.
+        \item Se actualiza en la interfaz la lista de miembros del grupo.
+        \item Se actualiza la interfaz del usuario eliminado.
     \end{enumerate}
 \end{hu_card}
 
@@ -373,7 +378,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Un cliente podrá crear una votación de manera personal o en un grupo del que forma parte, siendo la decisión pública para todos los miembros del grupo. La votación contará con un título, una lista de opciones y el tipo de votación.
+    Un cliente podrá crear una votación de manera personal o en un grupo del que forma parte, siendo en este último caso la decisión pública para todos los miembros del grupo. La votación contará con un título, una lista de opciones y el tipo de votación.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -449,7 +454,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Pruebas de Validación (Criterios de Aceptación):}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item La votación y todos sus datos asociados se borran de la base de datos.
-        \item Solo puede eliminar la votación el creador de la misma.
+        \item Solo se permite eliminar la votación el creador de la misma.
     \end{enumerate}
 \end{hu_card}
 
@@ -471,7 +476,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
     \textbf{Tareas:}
     \begin{itemize}[noitemsep, topsep=0pt]
-        \item Mostrar las votaciones que no hayan finalizado en la interfaz de un grupo.
+        \item Mostrar las votaciones que no hayan finalizado en la interfaz del grupo.
     \end{itemize}
 
     \vspace{2mm}
@@ -509,7 +514,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item Un usuario solo podrá votar una vez por votación.
         \item Solo podrán votar los usuarios pertenecientes al grupo.
-        \item Cuando se hayan registrado los votos de todos los miembros se cerrará la votación.
+        \item Cuando se hayan registrado los votos de todos los miembros se cerrará la votación automáticamente, aunque aún no haya pasado el tiempo máximo.
         \item El voto será almacenado en la base de datos relacionando la opción votada, el cliente y la votación.
     \end{enumerate}
 \end{hu_card}
@@ -527,7 +532,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Los miembros de un grupo podrán sugerir opciones durante el proceso de creación de una votación. Esas opciones, serán añadidas como posibles opciones votables una vez configurada completamente una votación.
+    Los miembros de un grupo podrán sugerir opciones durante el proceso de creación de una votación. Esas opciones, serán añadidas como opciones que podrán votar cuando se publique la votación.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -541,7 +546,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item La opción se añade a la base de datos relacionada con la votación.
         \item Solo los usuarios miembros de un grupo podrán sugerir opciones.
-        \item La interfaz de opciones de la votación se actualiza mostrando la nueva creada.
+        \item La interfaz de opciones de la votación se actualiza mostrando la nueva opción creada.
     \end{enumerate}
 \end{hu_card}
 
@@ -576,6 +581,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item El tipo de elección se guarda en la base de datos.
         \item Al comenzar la votación el sistema de votos es el elegido.
+        \item El ganador es elegido siguiendo los parámetros establecidos por el tipo de votación elegido.
     \end{enumerate}
 \end{hu_card}
 
@@ -652,7 +658,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Los clientes podrán seleccionar desde un grupo o desde su cuenta personal decidir usando como plantilla las elecciones predeterminadas que ofrece la aplicación.
+    Los clientes podrán seleccionar desde un grupo o desde su cuenta personal crear una votación usando como plantilla las elecciones predeterminadas que ofrece la aplicación.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -713,7 +719,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Un administrador podrá crear otro administrador para el sistema. Para ello, tendrá que cambiar el rol asociado de otro usuario de cliente a administrador.
+    Un administrador podrá crear otro administrador del sistema. Para ello, tendrá que cambiar el rol asociado de otro usuario de cliente a administrador.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -743,7 +749,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Un administrador podrá cambiarle el rol a otro usuario de administrador a cliente.
+    Un administrador podrá eliminar a otro administrador del sistema. Eso se conseguirá cambiandole el rol al otro usuario de administrador a cliente.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -837,7 +843,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \begin{tabularx}{\linewidth}{l X}
         \textbf{Prioridad:}   & 6\\
         \textbf{Estimación:}  & 1 PH \\
-        \textbf{RF Relacionados:} & REQ23 \\
+        \textbf{RF Relacionados:} & REQ24 \\
     \end{tabularx}
 
     \vspace{2mm}
@@ -1059,7 +1065,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \begin{tabularx}{\linewidth}{l X}
         \textbf{Prioridad:}   & 11\\
         \textbf{Estimación:}  & 1 PH \\
-        \textbf{RF Relacionados:} & REQ2, REQ3, REQ4, REQ5, REQ10, REQ11, REQ12, REQ14, REQ 15, REQ16, REQ17, REQ18, REQ19, REQ20, REQ21 y REQ23 \\
+        \textbf{RF Relacionados:} & REQ2, REQ3, REQ4, REQ5, REQ10, REQ11, REQ12, REQ14, REQ 15, REQ16, REQ17, REQ18, REQ19, REQ20, REQ21, REQ23 y REQ24 \\
     \end{tabularx}
 
     \vspace{2mm}
