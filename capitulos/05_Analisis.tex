@@ -77,8 +77,15 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item El sistema no permitirá el registro de usuarios con un correo electrónico ya existente en la base de datos.
-        \item El sistema validará que el correo electrónico introducido cumple el formato estándar.
-        \item El nombre de usuario no podrá estar repetido en el sistema.
+        \item El sistema validará que el correo electrónico introducido cumple el formato estándar. Siendo el formato estándar:
+            \begin{itemize}
+                \item Contiene un único arroba (@), el cual no podrá ser ni el primer ni el último caracter.
+                \item Presenta un punto después del arroba (@).
+                \item Entre el arroba (@) y el punto debe aparecer al menos un caracter.
+                \item Después del último punto hay al menos dos caracteres.
+                \item No contiene espacios en blanco.
+            \end{itemize}
+        \item El nombre de usuario no podrá estar repetido en el sistema y no podrá contener el caracter arroba (@).
         \item La contraseña introducida deberá contener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.
         \item El campo de contraseña debe poder estar oculto mientras el usuario escribe.
         \item El campo de contraseña y confirmación deben coincidir.
@@ -118,8 +125,15 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item El sistema no permitirá cambiar el correo electrónico a uno ya existente en la base de datos.
-        \item El sistema validará que el correo electrónico introducido cumple el formato estándar.
-        \item El nombre de usuario no podrá estar repetido en el sistema.
+        \item El sistema validará que el correo electrónico introducido cumple el formato estándar. Siendo el formato estándar: 
+            \begin{itemize}
+                \item Contiene un único arroba (@), el cual no podrá ser ni el primer ni el último caracter.
+                \item Presenta un punto después del arroba (@).
+                \item Entre el arroba (@) y el punto debe aparecer al menos un caracter.
+                \item Después del último punto hay al menos dos caracteres.
+                \item No contiene espacios en blanco.
+            \end{itemize}
+        \item El nombre de usuario no podrá estar repetido en el sistema y no podrá contener el caracter arroba (@).
         \item La contraseña introducida deberá contener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.
         \item El campo de contraseña debe poder estar oculto mientras el usuario escribe.
         \item El campo de contraseña y confirmación deben coincidir.
@@ -150,14 +164,14 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Tareas:}
     \begin{itemize}[noitemsep, topsep=0pt]
         \item Crear la interfaz con botón de eliminación.
-        \item Eliminar la cuenta y sus datos asociados de la base de datos.
+        \item Eliminar la cuenta y los datos del usuario de los grupos y votaciones de la base de datos.
     \end{itemize}
 
     \vspace{2mm}
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item La cuenta se borra del sistema.
-        \item Los datos asociados de la cuenta se borran del sistema.
+        \item Se elimina la cuenta de los grupos a los que pertenezca y las votaciones en las que haya participado. 
         \item Al borrar la cuenta se redirige a la pantalla de inicio de sesión.
     \end{enumerate}
 \end{hu_card}
@@ -256,7 +270,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item El grupo se ha guardado en la base de datos.
-        \item Se guarda en el sistema al creador del grupo como miembro de él.
+        \item El creador está registrado como miembro del grupo.
     \end{enumerate}
 \end{hu_card}
 
@@ -274,7 +288,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Un cliente podrá abandonar cualquiera de los grupos de los cuales forma parte, dejándole de salir en la interfaz de grupos a los que pertenece.
+    Un cliente podrá abandonar cualquiera de los grupos de los cuales forme parte. Una vez lo abandone, el grupo desaparecerá de la interfaz de grupos a los que pertenece.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -287,8 +301,8 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
-        \item Se elimina en la base de datos la relación de pertenencia entre el cliente y el grupo.
-        \item Si es el último miembro que formaba parte del grupo se elimina automáticamente el grupo y sus datos asociados.
+        \item Se ha eliminado en la base de datos la relación de pertenencia entre el cliente y el grupo.
+        \item Si el usuario es el último miembro, el grupo es eliminado automáticamente por el sistema.
     \end{enumerate}
 \end{hu_card}
 
@@ -312,15 +326,15 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Tareas:}
     \begin{itemize}[noitemsep, topsep=0pt]
         \item Se actualiza la interfaz del grupo con el número y nombre de los miembros.
-        \item Se actualiza la interfaz de la lista de grupos al nuevo miembro.
-        \item Se guarda la relación entre el nuevo miembro y el grupo en el sistema.
+        \item Se actualiza la interfaz de la lista de grupos al cliente.
+        \item Se guarda la relación entre el cliente y el grupo en el sistema.
         \item Crear la interfaz de añadir nuevos miembros.
     \end{itemize}
 
     \vspace{2mm}
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
-        \item Si intentas añadir a un cliente que ya pertenece al grupo te saldrá un mensaje de error.
+        \item Si se intenta añadir a un cliente que ya pertenece al grupo, se generará un mensaje de error.
         \item Se guarda en la base de datos la asociación entre el nuevo miembro y el grupo.
         \item Si se supera el número máximo de miembros pertenecientes a un grupo, se cancelará la inserción y se avisará mediante un error.
     \end{enumerate}
@@ -340,7 +354,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Un miembro de un grupo podrá eliminar a otro miembro del mismo, dejando de formar parte de él hasta que un usuario perteneciente al mismo volvierá a añadirlo. Al usuario eliminado dejará de salirle el grupo en la lista de grupos.
+    Un miembro de un grupo podrá eliminar a otro miembro del mismo. Al usuario eliminado dejará de salirle el grupo en la lista de grupos.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -374,7 +388,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Un cliente podrá crear una votación de manera personal o en un grupo del que forma parte, siendo en este último caso la decisión pública para todos los miembros del grupo. La votación contará con un título, una lista de opciones y el tipo de votación.
+    Un cliente podrá crear una votación individual o en un grupo del que forma parte. La votación individual se creará fuera de todos los grupos y solo podrá visualizarla y votar en ella el creador. Por otra parte, las votaciones creadas en un grupo serán públicas para todos los miembros del grupo. La votación contará con un título, una lista de opciones y el tipo de votación.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -382,6 +396,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
         \item Implementar la interfaz de creación de votación.
         \item Actualizar la interfaz del grupo con las votaciones activas.
         \item Guardar los datos de la votación en la base de datos.
+        \item Implementar el sistema de extracción de información.
     \end{itemize}
 
     \vspace{2mm}
@@ -408,7 +423,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    El creador de una votación en un grupo podrá asignarle un tiempo máximo para que el resto de usuarios del grupo voten. Pasado ese tiempo, se cerrará automaticamente la votación anunciándose el ganador.
+    El creador de una votación en un grupo podrá asignarle un tiempo máximo para que el resto de usuarios del grupo voten. Pasado ese tiempo, se cerrará automaticamente la votación y se anunciará el ganador.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -420,7 +435,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
-        \item Pasado el tiempo máximo la votación se cierra automáticamente.
+        \item Pasado el tiempo máximo, la votación se cierra automáticamente.
         \item La hora de finalización se guarda en el sistema asociada a la votación.
     \end{enumerate}
 \end{hu_card}
@@ -430,7 +445,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \begin{tabularx}{\linewidth}{l X}
         \textbf{Prioridad:}   & 19\\
         \textbf{Estimación:}  & 1 PH \\
-        \textbf{RF Relacionados:} & REQ16 \\
+        \textbf{RF Relacionados:} & REQ15 \\
         \textbf{Categoría:} & Gestión de votaciones \\
     \end{tabularx}
 
@@ -439,20 +454,23 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Un creador de una votación podrá elimarla antes de que finalice, borrandose todos los datos relativos a ella.
+    Un creador de una votación podrá modificar cualquier dato relativo a ella antes de que cualquier usuario haya votado. Una vez que se haya registrado algún voto, solo podrá modificarse el tiempo máximo para la finalización de la votación.
 
     \vspace{2mm}
     \textbf{Tareas:}
     \begin{itemize}[noitemsep, topsep=0pt]
-        \item Crear en la interfaz el botón de borrado de votación.
-        \item Eliminar los datos relativos a la votación en la base de datos.
+        \item Crear la interfaz de edición de la votación.
+        \item Cambiar los datos de la votación en la base de datos.
+        \item Modificar la interfaz con los nuevos datos de la votación.
     \end{itemize}
 
     \vspace{2mm}
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
-        \item La votación y todos sus datos asociados se borran de la base de datos.
-        \item Solo se permite eliminar la votación el creador de la misma.
+        \item La votación se modifica en la base de datos.
+        \item Se actualiza la interfaz con los nuevos datos de la votación.
+        \item Se respetan las restricciones de edición de acuerdo al número de votos registrados.
+        \item Solo se permite editar la votación el creador de la misma.
     \end{enumerate}
 \end{hu_card}
 
@@ -482,7 +500,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
-        \item La votación y todos sus datos asociados se borran de la base de datos.
+        \item La votación y todas sus opciones y votos asociados se borran de la base de datos.
         \item Solo se permite eliminar la votación el creador de la misma.
     \end{enumerate}
 \end{hu_card}
@@ -531,7 +549,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Un cliente perteneciente a un grupo podrá votar en las votaciones activas del grupo. Guardandose su voto y teniéndolo en cuenta en la elección del ganador.
+    Un cliente perteneciente a un grupo podrá votar en las votaciones activas de los grupos a los que pertenece. Si lo hace, su voto se guardará y se tendrá en cuenta a la hora de elegir la opción ganadora.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -545,7 +563,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item Un usuario solo podrá votar una vez por votación.
         \item Solo podrán votar los usuarios pertenecientes al grupo.
-        \item Cuando se hayan registrado los votos de todos los miembros se cerrará la votación automáticamente, aunque aún no haya pasado el tiempo máximo.
+        \item Cuando se hayan registrado los votos de todos los miembros, se cerrará la votación automáticamente, aunque aún no haya pasado el tiempo máximo.
         \item El voto será almacenado en la base de datos relacionando la opción votada, el cliente y la votación.
     \end{enumerate}
 \end{hu_card}
@@ -564,20 +582,21 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Los miembros de un grupo podrán sugerir opciones durante el proceso de creación de una votación. Esas opciones, serán añadidas como opciones que podrán votar cuando se publique la votación.
+    Si el creador de la votación lo permite los miembros de un grupo podrán sugerir opciones durante el proceso de creación. Esas opciones trás ser validadas por el creador serán añadidas como opciones que podrán votar cuando se publique la votación.
 
     \vspace{2mm}
     \textbf{Tareas:}
     \begin{itemize}[noitemsep, topsep=0pt]
         \item Implementar la interfaz de creación de opciones.
         \item Guardar la opción en el sistema.
+        \item Implementar el sistema de extracción de información.
     \end{itemize}
 
     \vspace{2mm}
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item La opción se añade a la base de datos relacionada con la votación.
-        \item Solo los usuarios miembros de un grupo podrán sugerir opciones.
+        \item Solo los usuarios que son miembros de un grupo podrán sugerir opciones.
         \item La interfaz de opciones de la votación se actualiza mostrando la nueva opción creada.
     \end{enumerate}
 \end{hu_card}
@@ -613,8 +632,8 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item El tipo de elección se guarda en la base de datos.
-        \item Al comenzar la votación el sistema de votos es el elegido.
-        \item El ganador es elegido siguiendo los parámetros establecidos por el tipo de votación elegido.
+        \item Al comenzar la votación, el sistema de votos es el elegido.
+        \item El ganador es elegido siguiendo los parámetros establecidos por el tipo de votación seleccionada.
     \end{enumerate}
 \end{hu_card}
 
@@ -644,9 +663,8 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item Se muestran todas las votaciones finalizadas en las que participó el cliente.
-        \item No se muestran votaciones que no pertenezcan al cliente.
     \end{enumerate}
-\end{hu_card}5
+\end{hu_card}
 
 %19
 \begin{hu_card}{19}{Como cliente quiero ver la opción ganadora en una votación para conocer la decisión final}
@@ -662,7 +680,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Los participantes de una votación aunque no hayan ejercido su derecho al voto podrán ver el resultado final de la elección.
+    Los participantes de una votación, aunque no hayan ejercido su derecho al voto, podrán ver el resultado final de la elección.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -676,7 +694,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item La opción ganadora se guarda correctamente en el sistema asociada a la votación.
-        \item Solo se avisa a los usuarios pertenecientes a la votación de la opción ganadora.
+        \item Solo se avisa de la opción ganadora a los participantes de la votación.
     \end{enumerate}
 \end{hu_card}
 
@@ -694,13 +712,14 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Los clientes podrán seleccionar desde un grupo o desde su cuenta personal crear una votación usando como plantilla las elecciones predeterminadas que ofrece la aplicación.
+    Los clientes podrán desde un grupo o desde su cuenta personal, crear una votación usando como plantilla las elecciones predeterminadas que ofrece la aplicación.
 
     \vspace{2mm}
     \textbf{Tareas:}
     \begin{itemize}[noitemsep, topsep=0pt]
         \item Añadir elecciones predeterminadas en la base de datos.
         \item Añadir las elecciones predeterminadas en la interfaz de la aplicación. 
+        \item Implementar el sistema de extracción de información.
     \end{itemize}
 
     \vspace{2mm}
@@ -708,7 +727,6 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item Cada vez que alguien seleccione una decisión predeterminada se creará una nueva votación partiendo de esa plantilla.
         \item Habrá al menos una decisión predeterminada en el sistema.
-        \item Las votaciones predeterminadas se comportarán de la misma forma que una votación normal.
     \end{enumerate}
 \end{hu_card}
 
@@ -770,7 +788,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item El rol del usuario se cambia en la base de datos.
-        \item El nuevo administrador accede al sistema con las opciones de administrador.
+        \item El nuevo administrador accede al sistema y dispone de opciones de administración.
     \end{enumerate}
 \end{hu_card}
 
@@ -788,7 +806,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Un administrador podrá eliminar a otro administrador del sistema. Eso se conseguirá cambiandole el rol al otro usuario de administrador a cliente.
+    Un administrador podrá modificar el rol a otro administrador y convertirlo en un usuario cliente.
 
     \vspace{2mm}
     \textbf{Tareas:}
@@ -801,7 +819,7 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item El rol del usuario se cambia en la base de datos.
-        \item El antiguo administrador accede al sistema con las opciones de cliente.
+        \item El antiguo administrador accede al sistema y solo dispone de las opciones de cliente.
     \end{enumerate}
 \end{hu_card}
 
@@ -833,8 +851,15 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
         \item El sistema no permitirá cambiar el correo electrónico a uno ya existente en la base de datos.
-        \item El sistema validará que el correo electrónico introducido cumple el formato estándar.
-        \item El nombre de usuario no podrá estar repetido en el sistema.
+        \item El sistema validará que el correo electrónico introducido cumple el formato estándar. Siendo el formato estándar: 
+            \begin{itemize}
+                \item Contiene un único arroba (@), el cual no podrá ser ni el primer ni el último caracter.
+                \item Presenta un punto después del arroba (@).
+                \item Entre el arroba (@) y el punto debe aparecer al menos un caracter.
+                \item Después del último punto hay al menos dos caracteres.
+                \item No contiene espacios en blanco.
+            \end{itemize}
+        \item El nombre de usuario no podrá estar repetido en el sistema y no podrá contener el caracter arroba (@).
         \item La contraseña introducida deberá contener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.
         \item El campo de contraseña debe poder estar oculto mientras el usuario escribe.
         \item El campo de contraseña y confirmación deben coincidir.
@@ -872,10 +897,10 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
-        \item Si intentas añadir a un cliente que ya pertenece al grupo te saldrá un mensaje de error.
+        \item Si se intenta añadir a un cliente que ya pertenece al grupo aparecerá un mensaje de error.
         \item Se actualiza en la base de datos los cambios realizados en el grupo.
         \item Si se supera el número máximo de miembros pertenecientes a un grupo, se cancelará la inserción y se avisará mediante un error.
-        \item Si se elimina el último miembro que formaba parte del grupo se elimina automáticamente el grupo y sus datos asociados.
+        \item Si se elimina el último miembro que formaba parte del grupo se elimina automáticamente el grupo.
     \end{enumerate}
 \end{hu_card}
 
@@ -930,13 +955,14 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \textbf{Tareas:}
     \begin{itemize}[noitemsep, topsep=0pt]
         \item Añadir en la interfaz un botón de eliminación del usuario.
-        \item Borrar los datos asociados al usuario del sistema.
+        \item Borrar los datos del usuario de los grupos y votaciones.
     \end{itemize}
 
     \vspace{2mm}
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
-        \item Se eliminan los datos del usuario correspondiente y sus datos asociados de la base de datos.
+        \item Se eliminan los datos del usuario correspondiente en la base de datos.
+       \item Se elimina la cuenta de los grupos a los que pertenezca y las votaciones en las que haya participado. 
         \item Se actualizan las interfaces dejando de mostrar a ese usuario.
     \end{enumerate}
 \end{hu_card}
@@ -955,19 +981,19 @@ A continuación, exponemos las distintas historias de usuario desglosadas en tar
     \vspace{2mm}
 
     \textbf{Descripción Detallada:} \\
-    Un administrador podrá eliminar un grupo y sus datos asociados.
+    Un administrador podrá eliminar un grupo.
 
     \vspace{2mm}
     \textbf{Tareas:}
     \begin{itemize}[noitemsep, topsep=0pt]
         \item Crear el botón de borrado del grupo.
-        \item Borrar el grupo y todos sus datos asociados de la base de datos.
+        \item Borrar el grupo de la base de datos.
     \end{itemize}
 
     \vspace{2mm}
     \textbf{Pruebas de Validación:}
     \begin{enumerate}[noitemsep, topsep=0pt]
-        \item Se elimina el grupo y sus datos asociados de la base de datos.
+        \item Se elimina el grupo de la base de datos.
         \item Se actualiza la interfaz dejando de aparecer ese grupo.
     \end{enumerate}
 \end{hu_card}
