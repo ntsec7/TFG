@@ -8,3 +8,14 @@
 \contentsline {table}{\numberline {4.3}{\ignorespaces Estimación de costes del proyecto}}{33}{table.caption.31}%
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {5.1}{\ignorespaces Orden del product backlog}}{35}{table.5.1}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Definición de la tabla \textit {auth.users}}}{61}{table.caption.35}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces Definición de la tabla \textit {usuario}}}{62}{table.caption.36}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces Definición de la tabla \textit {grupo}}}{62}{table.caption.37}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces Definición de la tabla \textit {group\_members}}}{62}{table.caption.38}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces Definición de la tabla \textit {decision}}}{63}{table.caption.39}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces Definición de la tabla \textit {opcion}}}{63}{table.caption.40}%
+\contentsline {table}{\numberline {6.7}{\ignorespaces Definición de la tabla \textit {simple\_vote}}}{64}{table.caption.41}%
+\contentsline {table}{\numberline {6.8}{\ignorespaces Definición de la tabla \textit {criterion\_vote}}}{64}{table.caption.42}%
+\contentsline {table}{\numberline {6.9}{\ignorespaces Definición de la tabla \textit {criterion\_vote}}}{64}{table.caption.43}%
+\contentsline {table}{\numberline {6.10}{\ignorespaces Definición de la tabla \textit {scientific\_vote}}}{65}{table.caption.44}%

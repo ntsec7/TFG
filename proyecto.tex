@@ -82,6 +82,8 @@ pdfproducer = {pdflatex}
 \usepackage[most]{tcolorbox}
 \usepackage{tabularx}
 \usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{float}
 \newtcolorbox{hu_card}[2]{
     colback=white,
     colframe=cyan!60!black,
@@ -91,6 +93,10 @@ pdfproducer = {pdflatex}
     enhanced,
     drop shadow
 }
+
+\newcommand{\tick}{\checkmark}
+\newcommand{\cross}{$\times$}
+
 %\usepackage{index}
 
 %\makeindex
@@ -214,8 +220,7 @@ pdfproducer = {pdflatex}
 \input{capitulos/03_EspecificacionRequisitos}
 \input{capitulos/04_Planificacion}
 \input{capitulos/05_Analisis}
-%
-%\input{capitulos/05_Diseno}
+\input{capitulos/06_Diseno}
 %
 %\input{capitulos/06_Implementacion}
 %

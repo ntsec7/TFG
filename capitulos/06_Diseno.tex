@@ -1,0 +1,285 @@
+\chapter{Diseño}
+
+\section{Arquitectura del sistema}
+
+El proyecto no se basa en una única arquitectura tal y como podemos apreciar en la Figura~\ref{diagramaarq}, sino en la combinación de varios estilos arquitectónicos. Como base, sigue una arquitectura cliente-servidor, donde el cliente está desarrollado en \textit{Flutter} y el servidor en \textit{Supabase}.  \\
+
+No obstante, \textit{Supabase} no se comporta como un servidor tradicional, sino que sigue un enfoque Backend as a Service (BaaS), proporcionando de forma integrada servicios como autenticación, base de datos, comunicación en tiempo real y ejecución de lógica mediante Edge Functions. \\
+
+Asimismo, el uso de Edge Functions implica adoptar una arquitectura serverless, en el que las funciones se ejecutan bajo demanda, escalan automáticamente y abstraen la gestión de la infraestructura subyacente. \\
+
+Por otra parte, en el lado del cliente, se sigue una arquitectura a capas, disponiendo de capas de presentación, lógica y acceso a datos. \\
+
+Finalmente, dada la necesidad de actualizar en tiempo real la información relativa a grupos y votaciones, el sistema incorpora una arquitectura orientada a eventos, en la que los clientes reaccionan a los cambios producidos en el backend. \\
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.7\textwidth]{figuras/diagramas/arquitectura.png}
+        \caption{Diagrama de la arquitectura del sistema \cite{iconocliente} \cite{iconoservidor} }
+        \label{fig:diagramaarq}
+    \end{figure}
+
+
+\section{API de la aplicación}
+
+\section{Diagrama de base de datos}
+
+En la Figura~\ref{fig:diagramaer} podemos ver el diagrama entidad-relación de la base de datos. Como puede observarse, se ha optado por utilizar nomenclatura en inglés para la definición de las entidades y sus atributos, salvo en el nombre de las tablas \textit{usuario}, \textit{grupo} y \textit{opcion}. Esto es debido a que en supabase las palabras \textit{user}, \textit{group} y \textit{option} están reservadas y podrían ocasionar conflictos o problemas en la implementación. \\
+
+El sistema estará formado por diez tablas: \textit{auth.users}, \textit{usuario}, \textit{grupo}, \textit{decision}, \textit{opcion}, \textit{simple\_vote}, \textit{group\_members}, \textit{scientific\_vote}, \textit{criterion\_vote} y \textit{criterion}. La tabla \textit{auth.user} es proporcionada por defecto por \textit{Supabase} y se utiliza para gestionar de manera segura la información personal de los usuarios. Aunque esta tabla cuenta con un número elevado de atributos, en el diagrama únicamente se representan los que se usarán en el desarrollo. Por su parte, las tablas \textit{simple\_vote}, \textit{group\_members}, \textit{criterion\_vote} y \textit{scientific\_vote} actuan como tablas intermedias que permiten modelar relaciones de tipo muchos a muchos, garantizando la unicidad de las asociaciones. En concreto, \textit{simple\_vote} relaciona los usuarios con las opciones de una decisión, \textit{group\_members} establece la relación entre usuarios y grupos y \textit{criterion} y \textit{scientific\_vote} se utiliza en las votaciones de tipo científico para puntuar a los criterios y las opciones sobre cada criterio respectivamente.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figuras/diagramas/DiagramaER.png}
+    \caption{Diagrama de la base de datos}
+    \label{fig:diagramaer}
+\end{figure}
+
+A continuación, se muestran en detalle los atributos de cada tabla, especificando los tipos de datos, claves primarias (PK), claves foráneas (FK), restricciones de unicidad, nulabilidad y valores por defecto. \\
+
+%auth.users
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l c c c}
+        \toprule
+        \multicolumn{5}{c}{\textbf{auth.users}} \\
+        \midrule
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \midrule
+        id & UUID & gen\_random\_uuid() & \tick  & \cross \\
+        email & TEXT & -  & \tick  & \cross  \\
+        encrypted\_password & TEXT  & - & \cross & \cross \\
+        email\_confirmed\_at & TIMESTAMP & -  & \cross & \tick  \\
+        new\_email & TEXT & - & \cross & \tick \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Claves}} \\
+        \midrule
+        PK                & \multicolumn{4}{l}{id} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Definición de la tabla \textit{auth.users}}
+\end{table}
+
+%usuario
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l c c c}
+        \toprule
+        \multicolumn{5}{c}{\textbf{usuario}} \\
+        \midrule
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \midrule
+        id & UUID & gen\_random\_uuid() & \tick  & \cross \\
+        username & TEXT & -  & \tick  & \cross  \\
+        name & TEXT  & - & \cross & \cross \\
+        image & TEXT & -  & \cross & \tick  \\
+        user\_type & user\_type & 'client' & \cross & \cross \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Claves}} \\
+        \midrule
+        PK                & \multicolumn{4}{l}{id} \\
+        FK              & \multicolumn{4}{l}{id $\rightarrow$ auth.users(id)} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Definición de la tabla \textit{usuario}}
+\end{table}
+
+%grupo
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l c c c}
+        \toprule
+        \multicolumn{5}{c}{\textbf{grupo}} \\
+        \midrule
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \midrule
+        id & UUID & gen\_random\_uuid() & \tick  & \cross \\
+        name & TEXT  & - & \cross & \cross \\
+        image & TEXT & -  & \cross & \tick  \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Claves}} \\
+        \midrule
+        PK                & \multicolumn{4}{l}{id} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Definición de la tabla \textit{grupo}}
+\end{table}
+
+%group_members
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l c c c}
+        \toprule
+        \multicolumn{5}{c}{\textbf{group\_members}} \\
+        \midrule
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \midrule
+        id\_group & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        id\_user & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Claves}} \\
+        \midrule
+        PK                & \multicolumn{4}{l}{id\_group, id\_user} \\
+        FK              & \multicolumn{4}{l}{id\_group $\rightarrow$ grupo(id)} \\
+        FK              & \multicolumn{4}{l}{id\_user $\rightarrow$ auth.users(id)} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Definición de la tabla \textit{group\_members}}
+\end{table}
+
+%decision
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l c c c}
+        \toprule
+        \multicolumn{5}{c}{\textbf{decision}} \\
+        \midrule
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \midrule
+        id & UUID & gen\_random\_uuid() & \tick  & \cross \\
+        id\_creator & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        title & TEXT  & - & \cross & \cross \\
+        t\_max & TIMESTAMP & - & \cross & \tick \\
+        finish & BOOLEAN & false & \cross & \cross \\
+        decison\_type & decision\_type & vote & \cross & \cross \\ 
+        \midrule
+        \multicolumn{5}{l}{\textbf{Claves}} \\
+        \midrule
+        PK                & \multicolumn{4}{l}{id} \\
+        FK              & \multicolumn{4}{l}{id\_creator $\rightarrow$ auth.users(id)} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Definición de la tabla \textit{decision}}
+\end{table}
+
+%opcion
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l c c c}
+        \toprule
+        \multicolumn{5}{c}{\textbf{opcion}} \\
+        \midrule
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \midrule
+        id & UUID & gen\_random\_uuid() & \tick  & \cross \\
+        id\_decision & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        title & TEXT  & - & \cross & \cross \\
+        description & TEXT & - & \cross & \tick \\
+        image & TEXT & - & \cross & \tick \\
+        percentage & INT & - & \cross & \cross \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Claves}} \\
+        \midrule
+        PK                & \multicolumn{4}{l}{id, id\_decision} \\
+        FK              & \multicolumn{4}{l}{id\_decision $\rightarrow$ decision(id)} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Definición de la tabla \textit{opcion}}
+\end{table}
+
+%simple_vote
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l c c c}
+        \toprule
+        \multicolumn{5}{c}{\textbf{simple\_vote}} \\
+        \midrule
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \midrule
+        id\_user & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        id\_option & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Claves}} \\
+        \midrule
+        PK                & \multicolumn{4}{l}{id\_user, id\_option} \\
+        FK              & \multicolumn{4}{l}{id\_user $\rightarrow$ auth.users(id)} \\
+        FK              & \multicolumn{4}{l}{id\_option $\rightarrow$ option(id)} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Definición de la tabla \textit{simple\_vote}}
+\end{table}
+
+%criterion
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l c c c}
+        \toprule
+        \multicolumn{5}{c}{\textbf{criterion\_vote}} \\
+        \midrule
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \midrule
+        id & UUID & gen\_random\_uuid() & \tick  & \cross \\
+        id\_decision & UUID & gen\_random\_uuid() & \tick  & \cross \\
+        title & TEXT & - & \cross & \cross \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Claves}} \\
+        \midrule
+        PK                & \multicolumn{4}{l}{id\_user, id\_option} \\
+        FK              & \multicolumn{4}{l}{id\_user $\rightarrow$ auth.users(id)} \\
+        FK              & \multicolumn{4}{l}{id\_option $\rightarrow$ option(id)} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Definición de la tabla \textit{criterion\_vote}}
+\end{table}
+
+%criterion_vote
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l c c c}
+        \toprule
+        \multicolumn{5}{c}{\textbf{criterion\_vote}} \\
+        \midrule
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \midrule
+        id\_user & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        id\_criterion & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        number & INT & 0 & \cross & \cross \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Claves}} \\
+        \midrule
+        PK                & \multicolumn{4}{l}{id\_user, id\_option} \\
+        FK              & \multicolumn{4}{l}{id\_user $\rightarrow$ auth.users(id)} \\
+        FK              & \multicolumn{4}{l}{id\_option $\rightarrow$ option(id)} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Definición de la tabla \textit{criterion\_vote}}
+\end{table}
+
+%scientific_vote
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l c c c}
+        \toprule
+        \multicolumn{5}{c}{\textbf{scientific\_vote}} \\
+        \midrule
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \midrule
+        id\_user & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        id\_option & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        id\_criterion & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        number & INT & 0 & \cross & \cross \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Claves}} \\
+        \midrule
+        PK                & \multicolumn{4}{l}{id\_user, id\_option} \\
+        FK              & \multicolumn{4}{l}{id\_user $\rightarrow$ auth.users(id)} \\
+        FK              & \multicolumn{4}{l}{id\_option $\rightarrow$ option(id)} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Definición de la tabla \textit{scientific\_vote}}
+\end{table}
+
+Se puntualizan ahora algunos atributos de las tablas: \\
+
+En la tabla \textit{auth\_user} el atributo \textit{new\_email} será usado para hacer el cambio de email asociado a una cuenta, por tanto, para mantener la unicidad, en \textit{new\_email} no podrá insertarse un valor que ya existe en \textit{email}. En \textit{new\_email} si podrá haber valores repetidos, ya que finalmente solo se trasladará a \textit{email} en la primera cuenta que confirme el cambio. \\
+
+Todos los atributos \textit{percentage} de la tabla \textit{opcion} relativos a una misma \textit{decision} deben sumar 100. 
+
+\section{Diagrama de clases}
+
+\section{Diagramas de secuencia}
+
+\section{Diseño de interfaces de usuario}
+
+\section{Diagrama de navegabilidad}
+
