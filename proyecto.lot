@@ -9,13 +9,27 @@
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {5.1}{\ignorespaces Orden del product backlog}}{35}{table.5.1}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {6.1}{\ignorespaces Definición de la tabla \textit {auth.users}}}{61}{table.caption.35}%
-\contentsline {table}{\numberline {6.2}{\ignorespaces Definición de la tabla \textit {usuario}}}{62}{table.caption.36}%
-\contentsline {table}{\numberline {6.3}{\ignorespaces Definición de la tabla \textit {grupo}}}{62}{table.caption.37}%
-\contentsline {table}{\numberline {6.4}{\ignorespaces Definición de la tabla \textit {group\_members}}}{62}{table.caption.38}%
-\contentsline {table}{\numberline {6.5}{\ignorespaces Definición de la tabla \textit {decision}}}{63}{table.caption.39}%
-\contentsline {table}{\numberline {6.6}{\ignorespaces Definición de la tabla \textit {opcion}}}{63}{table.caption.40}%
-\contentsline {table}{\numberline {6.7}{\ignorespaces Definición de la tabla \textit {simple\_vote}}}{64}{table.caption.41}%
-\contentsline {table}{\numberline {6.8}{\ignorespaces Definición de la tabla \textit {criterion\_vote}}}{64}{table.caption.42}%
-\contentsline {table}{\numberline {6.9}{\ignorespaces Definición de la tabla \textit {criterion\_vote}}}{64}{table.caption.43}%
-\contentsline {table}{\numberline {6.10}{\ignorespaces Definición de la tabla \textit {scientific\_vote}}}{65}{table.caption.44}%
+\contentsline {table}{\numberline {6.1}{\ignorespaces API de usuarios}}{60}{table.caption.34}%
+\contentsline {table}{\numberline {6.2}{\ignorespaces API de notificaciones}}{61}{table.caption.35}%
+\contentsline {table}{\numberline {6.3}{\ignorespaces API de grupos}}{61}{table.caption.36}%
+\contentsline {table}{\numberline {6.4}{\ignorespaces API de miembros de grupo}}{61}{table.caption.37}%
+\contentsline {table}{\numberline {6.5}{\ignorespaces API de decisiones}}{61}{table.caption.38}%
+\contentsline {table}{\numberline {6.6}{\ignorespaces API de opciones}}{62}{table.caption.39}%
+\contentsline {table}{\numberline {6.7}{\ignorespaces API de criterios}}{62}{table.caption.40}%
+\contentsline {table}{\numberline {6.8}{\ignorespaces API de decision\_watch}}{62}{table.caption.41}%
+\contentsline {table}{\numberline {6.9}{\ignorespaces API de option\_watch}}{62}{table.caption.42}%
+\contentsline {table}{\numberline {6.10}{\ignorespaces API de votos}}{63}{table.caption.43}%
+\contentsline {table}{\numberline {6.11}{\ignorespaces Definición de la tabla \textit {auth.users}}}{64}{table.caption.45}%
+\contentsline {table}{\numberline {6.12}{\ignorespaces Definición de la tabla \textit {usuario}}}{65}{table.caption.46}%
+\contentsline {table}{\numberline {6.13}{\ignorespaces Definición de la tabla \textit {grupo}}}{65}{table.caption.47}%
+\contentsline {table}{\numberline {6.14}{\ignorespaces Definición de la tabla \textit {group\_members}}}{65}{table.caption.48}%
+\contentsline {table}{\numberline {6.15}{\ignorespaces Definición de la tabla \textit {decision}}}{66}{table.caption.49}%
+\contentsline {table}{\numberline {6.16}{\ignorespaces Definición de la tabla \textit {decision\_watch}}}{66}{table.caption.50}%
+\contentsline {table}{\numberline {6.17}{\ignorespaces Definición de la tabla \textit {opcion}}}{67}{table.caption.51}%
+\contentsline {table}{\numberline {6.18}{\ignorespaces Definición de la tabla \textit {option\_watch}}}{67}{table.caption.52}%
+\contentsline {table}{\numberline {6.19}{\ignorespaces Definición de la tabla \textit {simple\_vote}}}{68}{table.caption.53}%
+\contentsline {table}{\numberline {6.20}{\ignorespaces Definición de la tabla \textit {criterion\_vote}}}{68}{table.caption.54}%
+\contentsline {table}{\numberline {6.21}{\ignorespaces Definición de la tabla \textit {criterion\_vote}}}{68}{table.caption.55}%
+\contentsline {table}{\numberline {6.22}{\ignorespaces Definición de la tabla \textit {scientific\_vote}}}{69}{table.caption.56}%
+\contentsline {table}{\numberline {6.23}{\ignorespaces Relación de las pantallas con los servicios}}{71}{table.caption.60}%
+\contentsline {table}{\numberline {6.24}{\ignorespaces Relación de las pantallas con los modelos}}{72}{table.caption.61}%
