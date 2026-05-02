@@ -2,7 +2,7 @@
 
 \section{Arquitectura del sistema}
 
-El proyecto no se basa en una única arquitectura tal y como podemos apreciar en la Figura~\ref{diagramaarq}, sino en la combinación de varios estilos arquitectónicos. Como base, sigue una arquitectura cliente-servidor, donde el cliente está desarrollado en \textit{Flutter} y el servidor en \textit{Supabase}.  \\
+El proyecto no se basa en una única arquitectura tal y como podemos apreciar en la Figura~\ref{fig:diagramaarq}, sino en la combinación de varios estilos arquitectónicos. Como base, sigue una arquitectura cliente-servidor, donde el cliente está desarrollado en \textit{Flutter} y el servidor en \textit{Supabase}.  \\
 
 No obstante, \textit{Supabase} no se comporta como un servidor tradicional, sino que sigue un enfoque Backend as a Service (BaaS), proporcionando de forma integrada servicios como autenticación, base de datos, comunicación en tiempo real y ejecución de lógica mediante Edge Functions. \\
 
@@ -690,5 +690,357 @@ En los diagramas de secuencia el cliente interactúa con el frontend, y este act
 
 \section{Diseño de interfaces de usuario}
 
+    Se exponen ahora en las Figuras \ref{fig:diupantallasiniciales}, \ref{fig:diupantallasgrupos}, \ref{fig:diugrouphistory}, \ref{fig:diusinglehistorygroup}, \ref{fig:diunotifications}, \ref{fig:diuperfil}, \ref{fig:diudecision}, \ref{fig:diuvotes}, \ref{fig:diudecisionwatch} y \ref{fig:diuadmin} los bocetos que representan el estado final de la aplicación. \\
+    
+    La aplicación se encuentra disponible en modo claro y oscuro, escogíendose uno u otro según la configuración del dispositivo. Los bocetos se han desarrollado en tema claro, habiéndose adjuntado uno adicional en el login con tema oscuro para que se pueda apreciar la gama de colores a usar.
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Login.png}
+            \caption{Login}
+            \label{fig:diulogin}
+        \end{subfigure}
+        \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Login Modo Oscuro.png}
+            \caption{Login modo oscuro}
+            \label{fig:diuloginoscuro}
+        \end{subfigure}
+        \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Register.png}
+            \caption{Registro}
+            \label{fig:diuregister}
+        \end{subfigure}
+        \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/ConfirmarEmail.png}
+            \caption{Confirmar email}
+            \label{fig:diuconfirmemail}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Recuperar Contraseña.png}
+            \caption{Recuperar contraseña}
+            \label{fig:diurecoverpassword}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Aviso Legal.png}
+            \caption{Aviso Legal}
+            \label{fig:diuavisolegal}
+        \end{subfigure}
+        \caption{Bocetos de las pantallas iniciales}
+        \label{fig:diupantallasiniciales}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/HomePage.png}
+            \caption{Página principal}
+            \label{fig:diuhomepage}
+        \end{subfigure}
+        \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Grupo HomePage.png}
+            \caption{Pantalla principal de un grupo}
+            \label{fig:diugrouphomepage}
+        \end{subfigure}
+        \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Grupo Miembros.png}
+            \caption{Miembros de un grupo}
+            \label{fig:diurgroupmembers}
+        \end{subfigure}
+        \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Grupo Miembros Eliminar.png}
+            \caption{Eliminar un miembro}
+            \label{fig:diugroupdeletemember}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Grupo Crear.png}
+            \caption{Crear un grupo}
+            \label{fig:diucreategroup}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Grupo Salirse.png}
+            \caption{Salirse de un grupo}
+            \label{fig:diuleavegroup}
+        \end{subfigure}
+        \caption{Bocetos de las pantallas de grupos}
+        \label{fig:diupantallasgrupos}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Grupo Historial.png}
+            \caption{Historial de un grupo}
+            \label{fig:diugrouphistorymain}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Grupo Historial Dentro.png}
+            \caption{Historial de una decisión}
+            \label{fig:diugrouphistorydecision}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Grupo Historial Opcion.png}
+            \caption{Historial de una opción}
+            \label{fig:diugrouiphistoryoption}
+        \end{subfigure}
+        \caption{Bocetos del historial de un grupo}
+        \label{fig:diugrouphistory}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Individual HomePage.png}
+            \caption{Página principal}
+            \label{fig:diusinglehomepage}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Individual Historial.png}
+            \caption{Historial}
+            \label{fig:diusinglehistory}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Individual Historial Dentro.png}
+            \caption{Historial de una decisión}
+            \label{fig:diusinglehistorydecision}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Individual Historial Opcion.png}
+            \caption{Historial de una opción}
+            \label{fig:diusinglehistoryoption}
+        \end{subfigure}
+        \caption{Bocetos del modo individual}
+        \label{fig:diusinglehistorygroup}
+    \end{figure}
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.3\textwidth]{figuras/diu/Notificaciones.png}
+        \caption{Bocetos de las notificaciones }
+        \label{fig:diunotifications}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Perfil.png}
+            \caption{Edición}
+            \label{fig:diuaccount}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Perfil mensaje.png}
+            \caption{Cambio de email}
+            \label{fig:diuchangeemail}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Perfil borrar cuenta.png}
+            \caption{Borrar cuenta}
+            \label{fig:diudeleteaccount}
+        \end{subfigure}
+        \caption{Bocetos del perfil}
+        \label{fig:diuperfil}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Crear Decision.png}
+            \caption{Voto y Ranking}
+            \label{fig:diudec1}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Crear Decision 2.png}
+            \caption{Cambiar el tipo}
+            \label{fig:diucdec2}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Crear Decision Cientifica.png}
+            \caption{Científica}
+            \label{fig:diudecisionscientific}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Crear Decision Ruleta.png}
+            \caption{Ruleta}
+            \label{fig:diudecisionrulete}
+        \end{subfigure}
+        \caption{Crear una decisión}
+        \label{fig:diudecision}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Voto Votación.png}
+            \caption{Votación clásica}
+            \label{fig:diuvoto}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Voto Científica.png}
+            \caption{Científica criterios}
+            \label{fig:diuscientificcriterion}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Voto Científica 2.png}
+            \caption{Científica opciones}
+            \label{fig:diuscientificopinions}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Voto Ruleta.png}
+            \caption{Ruleta}
+            \label{fig:diunrulete}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Voto Ranking.png}
+            \caption{Ranking}
+            \label{fig:diunanking}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Voto Votación Ver Opción.png}
+            \caption{Ver una opción}
+            \label{fig:diuvoteopcion}
+        \end{subfigure}
+        \caption{Votar}
+        \label{fig:diuvotes}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Crear Decision Predeterminada Cine.png}
+            \caption{Crearla}
+            \label{fig:diucreatedecisionwatch1}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Crear Decision Predeterminada Cine (1).png}
+            \caption{Crearla}
+            \label{fig:diucreatedecisionwatch2}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Decision Predeterminada Cine.png}
+            \caption{Votar}
+            \label{fig:diuvotedecisionwatch}
+        \end{subfigure}
+        \caption{Bocetos de decisión predeterminada}
+        \label{fig:diudecisionwatch}
+    \end{figure}
+
+    \begin{figure}
+        \centering
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Admin Perfil.png}
+            \caption{Perfil}
+            \label{fig:diuadminperfil}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Admin Eliminar Grupo.png}
+            \caption{Eliminar un grupo}
+            \label{fig:diuadmindeletegroup}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Admin Usuarios.png}
+            \caption{Lista de usuarios}
+            \label{fig:diuadminusers}
+        \end{subfigure}
+         \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Admin Edicion Usuarios Perfil.png}
+            \caption{Editar un perfil}
+            \label{fig:diuadminaccount1}
+        \end{subfigure}
+          \hfill % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Admin Edicion Usuarios Perfil 2.png}
+            \caption{Editar un perfil}
+            \label{fig:diuadminaccount2}
+        \end{subfigure}
+        \caption{Bocetos de las pantallas de administración}
+        \label{fig:diuadmin}
+    \end{figure}
+  
 \section{Diagrama de navegabilidad}
+
+En la siguiente Figura~\ref{fig:diagramanavegabilidad} se expone el diagrama que representa la navegabilidad dentro de la aplicación. \\
+
+Las flechas grandes indican las posibles pantallas que pueden abrirse al iniciar la aplicación. De tener una sesión abierta, se iniciará en la \textit{HomePage}, si no en \textit{Login}. \\
+
+Asimismo, desde cualquier pantalla que no sea \textit{Login}, \textit{Registro}, \textit{Políticas} o \textit{Recuperar contraseña} se podrá navegar a las distintas pantallas representadas en violeta. Se han ahorrado estas líneas, para aportar claridad. \\
+
+Dependiendo de tu tipo de usuario podrás acceder a distintas pantallas violetas. Un usuario normal no podrá acceder a la pantalla \textit{Lista de usuarios}, por su parte un administrador no dispondrá de las pantallas \textit{Modo individual} y \textit{Notificaciones}. \\
+
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.7\textwidth]{figuras/diagramas/Navegabilidad.png}
+        \caption{Diagrama de la navegabilidad del sistema }
+        \label{fig:diagramanavegabilidad}
+    \end{figure}
 

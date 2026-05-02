@@ -63,3 +63,4 @@
 {"rule":"PREP_VERB","sentence":"^\\QPor su parte, las clases que crean las clases que empiezan con están asociadas con MyApp y heredan de ConsumerStatefulWidget.\\E$"}
 {"rule":"PREP_VERB","sentence":"^\\QAsimismo, las clases que comienzan con heredan de ConsumerState y presentan una relación de dependencia con Navigator.\\E$"}
 {"rule":"PREP_VERB","sentence":"^\\QPor su parte, las clases que crean las clases que empiezan con heredan de ConsumerStatefulWidget y tienen una relación de dependencia con MyApp.\\E$"}
+{"rule":"SPANISH_WORD_REPEAT_RULE","sentence":"^\\QLogin Login modo oscuro Registro Bocetos de las pantallas iniciales\\E$"}
