@@ -29,22 +29,20 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {6.1}{\ignorespaces Diagrama de la arquitectura del sistema \cite {iconocliente} \cite {iconoservidor} }}{60}{figure.caption.33}%
 \contentsline {figure}{\numberline {6.2}{\ignorespaces Diagrama de la base de datos}}{64}{figure.caption.43}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Diagrama de clases representando el inicio de la aplicación }}{69}{figure.caption.54}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Diagrama de clases representando las pantallas de la aplicación }}{73}{figure.caption.55}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Diagrama de clases representando los modelos y servicios }}{74}{figure.caption.56}%
-\contentsline {figure}{\numberline {6.6}{\ignorespaces Diagramas de secuencia de sesión}}{75}{figure.caption.59}%
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Diagrama de secuencia de registro }}{75}{figure.caption.60}%
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Diagramas de secuencia de creacion}}{76}{figure.caption.61}%
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Diagramas de secuencia de creación de decisión}}{77}{figure.caption.62}%
-\contentsline {figure}{\numberline {6.10}{\ignorespaces Diagramas de secuencia de voto}}{78}{figure.caption.63}%
-\contentsline {figure}{\numberline {6.11}{\ignorespaces Bocetos de las pantallas iniciales}}{79}{figure.caption.64}%
-\contentsline {figure}{\numberline {6.12}{\ignorespaces Bocetos de las pantallas de grupos}}{80}{figure.caption.65}%
-\contentsline {figure}{\numberline {6.13}{\ignorespaces Bocetos del historial de un grupo}}{81}{figure.caption.66}%
-\contentsline {figure}{\numberline {6.14}{\ignorespaces Bocetos del modo individual}}{82}{figure.caption.67}%
-\contentsline {figure}{\numberline {6.15}{\ignorespaces Bocetos de las notificaciones }}{83}{figure.caption.68}%
-\contentsline {figure}{\numberline {6.16}{\ignorespaces Bocetos del perfil}}{83}{figure.caption.69}%
-\contentsline {figure}{\numberline {6.17}{\ignorespaces Crear una decisión}}{84}{figure.caption.70}%
-\contentsline {figure}{\numberline {6.18}{\ignorespaces Votar}}{85}{figure.caption.71}%
-\contentsline {figure}{\numberline {6.19}{\ignorespaces Bocetos de decisión predeterminada}}{86}{figure.caption.72}%
-\contentsline {figure}{\numberline {6.20}{\ignorespaces Bocetos de las pantallas de administración}}{87}{figure.caption.73}%
-\contentsline {figure}{\numberline {6.21}{\ignorespaces Diagrama de la navegabilidad del sistema }}{88}{figure.caption.74}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Diagrama de clases}}{70}{figure.caption.54}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Diagramas de secuencia de sesión}}{71}{figure.caption.55}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Diagrama de secuencia de registro }}{72}{figure.caption.56}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Diagramas de secuencia de creacion}}{73}{figure.caption.57}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Diagramas de secuencia de creación de decisión}}{74}{figure.caption.58}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Diagramas de secuencia de voto}}{75}{figure.caption.59}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Bocetos de las pantallas iniciales}}{76}{figure.caption.60}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Bocetos de las pantallas de grupos}}{77}{figure.caption.61}%
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Bocetos del historial de un grupo}}{78}{figure.caption.62}%
+\contentsline {figure}{\numberline {6.12}{\ignorespaces Bocetos del modo individual}}{79}{figure.caption.63}%
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Bocetos de las notificaciones }}{80}{figure.caption.64}%
+\contentsline {figure}{\numberline {6.14}{\ignorespaces Bocetos del perfil}}{80}{figure.caption.65}%
+\contentsline {figure}{\numberline {6.15}{\ignorespaces Crear una decisión}}{81}{figure.caption.66}%
+\contentsline {figure}{\numberline {6.16}{\ignorespaces Votar}}{82}{figure.caption.67}%
+\contentsline {figure}{\numberline {6.17}{\ignorespaces Bocetos de decisión predeterminada}}{83}{figure.caption.68}%
+\contentsline {figure}{\numberline {6.18}{\ignorespaces Bocetos de las pantallas de administración}}{84}{figure.caption.69}%
+\contentsline {figure}{\numberline {6.19}{\ignorespaces Diagrama de la navegabilidad del sistema }}{85}{figure.caption.70}%

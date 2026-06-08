@@ -548,6 +548,21 @@ Todos los atributos \textit{percentage} de la tabla \textit{opcion} relativos a 
 
 \section{Diagrama de clases}
 
+En la Figura~\ref{fig:dc1} se muestran los modelos y servicios que mantienen la información que se muestra en la aplicación actualizada. \\
+
+La función de la clase \textit{NotificationDisplayModel} es ayudar en la representación visual de las notificaciones en la aplicación. Por su parte, \textit{DecisionDraft} y \textit{OptionDraft} son usados en el proceso de creación de una decisión con el propósito de ir almacenando temporalmente los datos entre pantallas hasta que son guardados en la base de datos. Asimismo, la finalidad de las clases \textit{CheckUsername}, \textit{CheckEmail} y \textit{CheckPassword} es validar los datos de un usuario en su creación y edición, utilizando para ello un patrón plantilla. \\
+
+Con el fin de aportar claridad visual se ha omitido la relación de asociación que mantienen todos los servicios con \textit{SupabaseClient}, al ser utilizado como atributo para realizar operaciones con el backend. \\
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=\textwidth]{figuras/diagramas/DiagramaClases.png}
+        \caption{Diagrama de clases}
+        \label{fig:dc1}
+    \end{figure}
+
+\begin{comment}
+
 Debido a la complejidad del sistema, se ha optado por representar el diagrama de clases por partes, facilitando así la interpretación.
 
 En la Figura~\ref{fig:dc1} se muestra el inicio de la aplicación, guardando la información del usuario y el uso de las funciones de comprobación \textit{(check)} de los datos del usuario. \\
@@ -576,6 +591,7 @@ La Figura~\ref{fig:dc3} por su parte muestra los modelos y los servicios que man
         \caption{Diagrama de clases representando los modelos y servicios }
         \label{fig:dc3}
     \end{figure}
+
 
 Para que el sistema sea claro, se ha optado por explicar las relaciones existentes entre las clases de las distintas figuras en las siguientes tablas, evitando así un diagrama lleno de flechas difíciles de distinguir. \\
 
@@ -639,6 +655,8 @@ Representa la dependencia de las pantallas(filas) con los modelos(columnas).
 
 
 Asimismo, las clases que comienzan con \_ heredan de \textit{ConsumerState} y presentan una relación de dependencia con \textit{Navigator}. Por su parte, las clases que crean las clases que empiezan con \_ heredan de \textit{ConsumerStatefulWidget} y tienen una relación de dependencia con \textit{MyApp}. Además, los servicios mantienen una asociación con \textit{SupabaseClient}, al ser utilizado como atributo para realizar operaciones contra el backend.
+
+\end{comment}
 
 \section{Diagramas de secuencia}
 
