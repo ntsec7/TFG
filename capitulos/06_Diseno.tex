@@ -2,6 +2,7 @@
 
 \section{Arquitectura del sistema}
 
+\begin{comment}
 El proyecto no se basa en una única arquitectura tal y como podemos apreciar en la Figura~\ref{fig:diagramaarq}, sino en la combinación de varios estilos arquitectónicos. Como base, sigue una arquitectura cliente-servidor, donde el cliente está desarrollado en \textit{Flutter} y el servidor en \textit{Supabase}.  \\
 
 No obstante, \textit{Supabase} no se comporta como un servidor tradicional, sino que sigue un enfoque Backend as a Service (BaaS), proporcionando de forma integrada servicios como autenticación, base de datos, comunicación en tiempo real y ejecución de lógica mediante Edge Functions. \\
@@ -11,6 +12,17 @@ Asimismo, el uso de Edge Functions implica adoptar una arquitectura serverless, 
 Por otra parte, en el lado del cliente, se sigue una arquitectura a capas, disponiendo de capas de presentación, lógica y acceso a datos. \\
 
 Finalmente, dada la necesidad de actualizar en tiempo real la información relativa a grupos y votaciones, el sistema incorpora una arquitectura orientada a eventos, en la que los clientes reaccionan a los cambios producidos en el backend. \\
+\end{comment}
+
+El proyecto no se basa en un único estilo arquitectónico, como se observa en la Figura~\ref{fig:diagramaarq}, sino en la combinación de varios enfoques complementarios. A nivel general, sigue una arquitectura cliente-servidor, donde la aplicación desarrollada en \textit{Flutter} actúa como cliente y la plataforma \textit{Supabase} proporciona los servicios de backend. \\
+
+Aunque Supabase se percibe como una única plataforma desde el punto de vista del desarrollador, internamente el backend adopta un enfoque Backend as a Service (BaaS), delegando la gestión de distintos servicios especializados. Entre ellos se encuentran PostgreSQL para la persistencia de datos, Auth para la autenticación y gestión de usuarios, Storage para el almacenamiento de imágenes, Realtime para la sincronización de información en tiempo real y Edge Functions para la ejecución de lógica personalizada. \\
+
+Las Edge Functions permiten encapsular operaciones que requieren ejecutarse en el servidor, como tareas administrativas o lógica de negocio que no debe residir en el cliente. Estas funciones pueden activarse de dos formas: mediante peticiones HTTP realizadas por la aplicación cliente o mediante tareas programadas (\texttt{cron jobs}) configuradas en \textit{Supabase}. En el segundo caso, las funciones se ejecutan automáticamente en intervalos definidos para realizar operaciones periódicas, como la comprobación de fechas de finalización de votaciones. Por este motivo, las Edge Functions siguen un modelo de ejecución serverless, en el que la infraestructura y el escalado son gestionados automáticamente por \textit{Supabase}, sin necesidad de administrar servidores propios. \\
+
+En el lado cliente se sigue una arquitectura a capas, diferenciando la capa de presentación, encargada de la interfaz de usuario, la capa de lógica de aplicación, basada en Riverpod, responsable de la gestión del estado de forma reactiva y de la implementación de las reglas de negocio, y la capa de acceso a datos, encargada de la comunicación con los servicios de \textit{Supabase}. Riverpod permite desacoplar la lógica de la interfaz, facilitando una arquitectura reactiva en la que los cambios en el estado se propagan automáticamente a los componentes de la interfaz de usuario. Esta separación permite una clara división de responsabilidades y mejora la mantenibilidad y escalabilidad del código. \\
+
+Finalmente, el sistema incorpora una arquitectura orientada a eventos mediante el servicio Realtime de \textit{Supabase}. Gracias a este mecanismo, los clientes reciben notificaciones cuando se producen cambios relevantes en la base de datos, permitiendo actualizar automáticamente la información de grupos y votaciones sin necesidad de realizar consultas periódicas. \\
 
     \begin{figure}[ht]
         \centering
@@ -21,7 +33,7 @@ Finalmente, dada la necesidad de actualizar en tiempo real la información relat
 
 \section{API de la aplicación}
 
-La API sigue un diseño REST orientado a recursos. Las entidades principales del sistema (usuarios, grupos, decisiones, opciones, criterios y notificaciones) se exponen como endpoints, mientras que las relaciones intermedias (membresías a grupos, votos y notificaciones) se integran dentro de rutas jerárquicas que representan acciones del usuario. A continuación, se exponen los distintos endpoints. \\
+La API sigue un diseño REST orientado a recursos. Las entidades principales del sistema (usuarios, grupos, decisiones, opciones, \begin{comment}criterios\end{comment} y notificaciones) se exponen como endpoints, mientras que las relaciones intermedias (membresías a grupos, votos y notificaciones) se integran dentro de rutas jerárquicas que representan acciones del usuario. A continuación, se exponen los distintos endpoints. \\
 
 \textbf{\uline{Usuarios}}
 \begin{table}[H]
@@ -48,7 +60,7 @@ DELETE & /usuarios/\{id\}       & Eliminar usuario \\
 \textbf{Método} & \textbf{Ruta} & \textbf{Descripción} \\
 \midrule
 GET   & /usuarios/\{id\}/notificaciones & Obtener notificaciones del usuario \\
-PATCH & /notificaciones/\{id\}          & Actualizar estado (accept) \\
+DELETE & /notificaciones/\{id\}          & Eliminar una notificación \\
 \bottomrule
 \end{tabular}
 \caption{API de notificaciones}
@@ -119,6 +131,7 @@ DELETE & /opciones/\{id\}            & Eliminar opción \\
 \caption{API de opciones}
 \end{table}
 
+\begin{comment}
 \textbf{\uline{Criterios}}
 \begin{table}[H]
 \centering
@@ -135,6 +148,7 @@ DELETE & /criterios/\{id\}            & Eliminar criterio \\
 \end{tabular}
 \caption{API de criterios}
 \end{table}
+\end{comment}
 
 \textbf{\uline{Decision Watch}}
 \begin{table}[H]
@@ -173,26 +187,34 @@ GET  & /opciones/\{id\}/watch & Obtener configuración option\_watch \\
 \midrule
 POST & /decisiones/\{id\}/votos/simple      & Crear voto simple \\
 GET  & /decisiones/\{id\}/votos/simple      & Obtener votos simples \\
-
-POST & /decisiones/\{id\}/votos/cientifico  & Crear voto científico \\
-GET  & /decisiones/\{id\}/votos/cientifico  & Obtener votos científicos \\
-
-POST & /decisiones/\{dId\}/criterios/\{cId\}/votos & Crear voto por criterio \\
-GET  & /decisiones/\{dId\}/criterios/\{cId\}/votos & Obtener votos por criterio \\
 \bottomrule
 \end{tabular}
 \caption{API de votos}
 \end{table}
 
+\begin{comment}
+POST & /decisiones/\{id\}/votos/cientifico  & Crear voto científico \\
+GET  & /decisiones/\{id\}/votos/cientifico  & Obtener votos científicos \\
+
+POST & /decisiones/\{dId\}/criterios/\{cId\}/votos & Crear voto por criterio \\
+GET  & /decisiones/\{dId\}/criterios/\{cId\}/votos & Obtener votos por criterio \\
+\end{comment}
+
 \section{Diagrama de base de datos}
 
 En la Figura~\ref{fig:diagramaer} podemos ver el diagrama entidad-relación de la base de datos. Como puede observarse, se ha optado por utilizar nomenclatura en inglés para la definición de las entidades y sus atributos, salvo en el nombre de las tablas \textit{usuario}, \textit{grupo} y \textit{opcion}. Esto es debido a que en supabase las palabras \textit{user}, \textit{group} y \textit{option} están reservadas y podrían ocasionar conflictos o problemas en la implementación. \\
 
-El sistema estará formado por doce tablas: \textit{auth.users}, \textit{usuario}, \textit{grupo}, \textit{decision}, \textit{opcion}, \textit{simple\_vote}, \textit{group\_members}, \textit{scientific\_vote}, \textit{criterion}, \textit{criterion\_vote}, \textit{decision\_watch} y \textit{option\_watch}. La tabla \textit{auth.user} es proporcionada por defecto por \textit{Supabase} y se utiliza para gestionar de manera segura la información personal de los usuarios. Aunque esta tabla cuenta con un número elevado de atributos, en el diagrama únicamente se representan los que se usarán en el desarrollo. \\
+\begin{comment}El sistema estará formado por nueve tablas: \textit{auth.users}, \textit{usuario}, \textit{grupo}, \textit{decision}, \textit{opcion}, \textit{simple\_vote}, \textit{group\_members}, \textit{scientific\_vote}, \textit{criterion}, \textit{criterion\_vote},  \textit{decision\_watch} y \textit{option\_watch}. La tabla \textit{auth.user} es proporcionada por defecto por \textit{Supabase} y se utiliza para gestionar de manera segura la información personal de los usuarios. Aunque esta tabla cuenta con un número elevado de atributos, en el diagrama únicamente se representan los que se usarán en el desarrollo. \\\end{comment}
 
-Por su parte, las tablas \textit{simple\_vote}, \textit{group\_members}, \textit{criterion\_vote} y \textit{scientific\_vote} actuan como tablas intermedias que permiten modelar relaciones de tipo muchos a muchos, garantizando la unicidad de las asociaciones. En concreto, \textit{simple\_vote} relaciona los usuarios con las opciones de una decisión, \textit{group\_members} establece la relación entre usuarios y grupos y \textit{criterion} y \textit{scientific\_vote} se utiliza en las votaciones de tipo científico para puntuar a los criterios y las opciones sobre cada criterio respectivamente. 
+El sistema estará formado por diez tablas: \textit{auth.users}, \textit{usuario}, \textit{grupo}, \textit{notification} \textit{decision}, \textit{option}, \textit{simple\_vote}, \textit{group\_members}, \textit{decision\_watch} y \textit{option\_watch}. La tabla \textit{auth.user} es proporcionada por defecto por \textit{Supabase} y se utiliza para gestionar de manera segura la información personal de los usuarios. Aunque esta tabla cuenta con un número elevado de atributos, en el diagrama únicamente se representan los que se usarán en el desarrollo. \\
 
-En las relaciones exitentes entre las tablas, cabe destacar que las tablas \textit{opcion} y \textit{criterion} son entidades debiles de \textit{decision}. Asimismo, \textit{decision\_watch} y \textit{option\_watch} heredan de \textit{decision} y \textit{opcion} respectivamente. \\
+\begin{comment}Por su parte, las tablas \textit{simple\_vote} y \textit{group\_members} \textit{criterion\_vote} y \textit{scientific\_vote}  actuan como tablas intermedias que permiten modelar relaciones de tipo muchos a muchos, garantizando la unicidad de las asociaciones. En concreto, \textit{simple\_vote} relaciona los usuarios con las opciones de una decisión y \textit{group\_members} establece la relación entre usuarios y grupos.  y \textit{criterion} y \textit{scientific\_vote} se utiliza en las votaciones de tipo científico para puntuar a los criterios y las opciones sobre cada criterio respectivamente. \end{comment}
+
+Por su parte, las tablas \textit{simple\_vote} y \textit{group\_members} actuan como tablas intermedias que permiten modelar relaciones de tipo muchos a muchos, garantizando la unicidad de las asociaciones. En concreto, \textit{simple\_vote} relaciona los usuarios con las opciones de una decisión y \textit{group\_members} establece la relación entre usuarios y grupos. \\ 
+
+\begin{comment}En las relaciones exitentes entre tablas, cabe destacar que la tabla \textit{opcion} y \textit{criterion}  es una entidad debil de \textit{decision}. Asimismo, \textit{decision\_watch} y \textit{option\_watch} heredan de \textit{decision} y \textit{opcion} respectivamente. \\\end{comment}
+
+En las relaciones exitentes entre tablas, cabe destacar que la tabla \textit{opcion} es una entidad debil de \textit{decision}. Asimismo, \textit{decision\_watch} y \textit{option\_watch} heredan de \textit{decision} y \textit{opcion} respectivamente. \\
 
 \begin{figure}[ht]
     \centering
@@ -210,7 +232,7 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
         \toprule
         \multicolumn{5}{c}{\textbf{auth.users}} \\
         \midrule
-        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
         \midrule
         id & UUID & gen\_random\_uuid() & \tick  & \cross \\
         email & TEXT & -  & \tick  & \cross  \\
@@ -233,7 +255,7 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
         \toprule
         \multicolumn{5}{c}{\textbf{usuario}} \\
         \midrule
-        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
         \midrule
         id & UUID & gen\_random\_uuid() & \tick  & \cross \\
         username & TEXT & -  & \tick  & \cross  \\
@@ -257,7 +279,7 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
         \toprule
         \multicolumn{5}{c}{\textbf{grupo}} \\
         \midrule
-        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
         \midrule
         id & UUID & gen\_random\_uuid() & \tick  & \cross \\
         name & TEXT  & - & \cross & \cross \\
@@ -278,7 +300,7 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
         \toprule
         \multicolumn{5}{c}{\textbf{group\_members}} \\
         \midrule
-        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
         \midrule
         id\_group & UUID & gen\_random\_uuid() & \cross  & \cross \\
         id\_user & UUID & gen\_random\_uuid() & \cross  & \cross \\
@@ -293,6 +315,32 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
     \caption{Definición de la tabla \textit{group\_members}}
 \end{table}
 
+%notifications
+\begin{table}[H]
+    \centering
+    \begin{tabular}{l l c c c}
+        \toprule
+        \multicolumn{5}{c}{\textbf{notifications}} \\
+        \midrule
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
+        \midrule
+        id & UUID & gen\_random\_uuid() & \tick  & \cross \\
+        id\_user & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        id\_creator\_user & UUID & gen\_random\_uuid() & \cross  & \tick \\
+        id\_group & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        type & notification\_type & - & \cross & \cross \\
+        \midrule
+        \multicolumn{5}{l}{\textbf{Claves}} \\
+        \midrule
+        PK                & \multicolumn{4}{l}{id} \\
+        FK              & \multicolumn{4}{l}{id\_group $\rightarrow$ grupo(id)} \\
+        FK              & \multicolumn{4}{l}{id\_user $\rightarrow$ auth.users(id)} \\
+        FK              & \multicolumn{4}{l}{id\_creator $\rightarrow$ auth.users(id)} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Definición de la tabla \textit{notifications}}
+\end{table}
+
 %decision
 \begin{table}[H]
     \centering
@@ -300,15 +348,16 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
         \toprule
         \multicolumn{5}{c}{\textbf{decision}} \\
         \midrule
-        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
         \midrule
         id & UUID & gen\_random\_uuid() & \tick  & \cross \\
         id\_creator & UUID & gen\_random\_uuid() & \cross  & \cross \\
         id\_group & UUID & gen\_random\_uuid() & \cross & \tick \\
         title & TEXT  & - & \cross & \cross \\
-        t\_max & TIMESTAMP & - & \cross & \tick \\
-        finish & BOOLEAN & false & \cross & \cross \\
-        decison\_type & decision\_type & vote & \cross & \cross \\ 
+        state & decision\_state & - & \cross & \cross \\
+        options\_date & TIMESTAMPTZ & NULL & \cross & \tick \\
+        vote\_date & TIMESTAMPTZ & NULL & \cross & \tick \\
+        type & decision\_type & vote & \cross & \cross \\ 
         \midrule
         \multicolumn{5}{l}{\textbf{Claves}} \\
         \midrule
@@ -326,7 +375,7 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
         \toprule
         \multicolumn{5}{c}{\textbf{decision\_watch}} \\
         \midrule
-        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
         \midrule
         type & watch\_type & film & \cross  & \cross \\
         platform & TEXT[] & - & \cross & \tick \\
@@ -347,21 +396,23 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
     \caption{Definición de la tabla \textit{decision\_watch}}
 \end{table}
 
-%opcion
+%option
 \begin{table}[H]
     \centering
     \begin{tabular}{l l c c c}
         \toprule
-        \multicolumn{5}{c}{\textbf{opcion}} \\
+        \multicolumn{5}{c}{\textbf{option}} \\
         \midrule
-        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
         \midrule
         id & UUID & gen\_random\_uuid() & \tick  & \cross \\
         id\_decision & UUID & gen\_random\_uuid() & \cross  & \cross \\
+        id\_creator & UUID & gen\_random\_uuid() & \cross  & \cross \\
         title & TEXT  & - & \cross & \cross \\
         description & TEXT & - & \cross & \tick \\
         image & TEXT & - & \cross & \tick \\
-        percentage & INT & - & \cross & \cross \\
+        percentage & FLOAT8 & - & \cross & \cross \\
+        winner & BOOLEAN & false & \cross & \tick \\
         \midrule
         \multicolumn{5}{l}{\textbf{Claves}} \\
         \midrule
@@ -379,7 +430,7 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
         \toprule
         \multicolumn{5}{c}{\textbf{option\_watch}} \\
         \midrule
-        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
         \midrule
         type & watch\_type & film & \cross  & \cross \\
         platform & TEXT[] & - & \cross & \tick \\
@@ -401,7 +452,7 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
         \toprule
         \multicolumn{5}{c}{\textbf{simple\_vote}} \\
         \midrule
-        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
         \midrule
         id\_user & UUID & gen\_random\_uuid() & \cross  & \cross \\
         id\_option & UUID & gen\_random\_uuid() & \cross  & \cross \\
@@ -417,6 +468,7 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
     \caption{Definición de la tabla \textit{simple\_vote}}
 \end{table}
 
+\begin{comment}
 %criterion
 \begin{table}[H]
     \centering
@@ -424,7 +476,7 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
         \toprule
         \multicolumn{5}{c}{\textbf{criterion\_vote}} \\
         \midrule
-        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
         \midrule
         id & UUID & gen\_random\_uuid() & \tick  & \cross \\
         id\_decision & UUID & gen\_random\_uuid() & \tick  & \cross \\
@@ -447,7 +499,7 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
         \toprule
         \multicolumn{5}{c}{\textbf{criterion\_vote}} \\
         \midrule
-        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
         \midrule
         id\_user & UUID & gen\_random\_uuid() & \cross  & \cross \\
         id\_criterion & UUID & gen\_random\_uuid() & \cross  & \cross \\
@@ -470,7 +522,7 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
         \toprule
         \multicolumn{5}{c}{\textbf{scientific\_vote}} \\
         \midrule
-        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{Unique} & \textbf{Nullable} \\
+        \textbf{Atributo} & \textbf{Tipo} & \textbf{Valor defecto} & \textbf{U} & \textbf{N} \\
         \midrule
         id\_user & UUID & gen\_random\_uuid() & \cross  & \cross \\
         id\_option & UUID & gen\_random\_uuid() & \cross  & \cross \\
@@ -486,12 +538,13 @@ A continuación, se muestran en detalle los atributos de cada tabla, especifican
     \end{tabular}
     \caption{Definición de la tabla \textit{scientific\_vote}}
 \end{table}
+\end{comment}
 
 Se puntualizan a continuación algunos atributos de las tablas: \\
 
-En la tabla \textit{auth\_user} el atributo \textit{new\_email} será usado para hacer el cambio de email asociado a una cuenta, por tanto, para mantener la unicidad, en \textit{new\_email} no podrá insertarse un valor que ya existe en \textit{email}. En \textit{new\_email} si podrá haber valores repetidos, ya que finalmente solo se trasladará a \textit{email} en la primera cuenta que confirme el cambio. \\
+En la tabla \textit{auth\_user} el atributo \textit{new\_email} será usado para hacer el cambio de email asociado a una cuenta. Por tanto, para mantener la unicidad, en \textit{new\_email} no podrá insertarse un valor que ya existe en \textit{email}. En \textit{new\_email} sí podrá haber valores repetidos, ya que finalmente solo se trasladará a \textit{email} en la primera cuenta que confirme el cambio. \\
 
-Todos los atributos \textit{percentage} de la tabla \textit{opcion} relativos a una misma \textit{decision} deben sumar 100. 
+Todos los atributos \textit{percentage} de la tabla \textit{opcion} relativos a una misma \textit{decision} deben sumar 100 o ser nulos. 
 
 \section{Diagrama de clases}
 
