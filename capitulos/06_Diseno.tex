@@ -659,10 +659,23 @@ Asimismo, las clases que comienzan con \_ heredan de \textit{ConsumerState} y pr
 \end{comment}
 
 \section{Diagramas de secuencia}
-
+\begin{comment}
 Se desarrollan ahora en las Figuras \ref{fig:dssesion} \ref{fig:dsregister} \ref{fig:dscreate} \ref{fig:dsdecision} y \ref{fig:dsvote}  los principales métodos con los que cuenta la aplicación. \\
 
 En los diagramas de secuencia el cliente interactúa con el frontend, y este actua como cliente del backend (supabase). Además, en el método de inicio de sesión se introduce \textit{EdgeFucntion} como intermediario dentro del backend, permitiendo que los usuarios puedan iniciar sesión introduciendo su email o su nombre de usuario. Cuando se introduce un nombre de usuario en el inicio de sesión, el frontend invoca la Edge Function, que devolverá el email asociado al nombre de usuario introducido. Posteriormente, el frontend hace la autenticación de Supabase utilizando el email y contraseña, ya que Supabase utiliza esos datos de la tabla \textit{auth.users} como hemos mostrado en la sección de diagrama de la base de datos.
+\end{comment}
+
+Se desarrollan ahora los principales métodos con los que cuenta la aplicación. En todos ellos, podemos observar la participación de los elementos \textit{Frontend} que es la interfaz de usuario y la lógica de presentación, \textit{Riverpod} que actua como la capa de estado del \textit{Frontend} y distintos módulos de \textit{Supabase}. \textit{Supabase Auth} maneja la sesión, \textit{Supabase Database} almacena los datos y \textit{Supabase Storage} se utiliza para almacenar las imágenes usadas en la aplicación.  \\
+
+En la Figura~\ref{fig:dssesion} podemos observar los métodos de inicio y cerrado de sesión. Para el inicio de sesión se hace uso de \textit{Edge Function} como intermediario, con el objetivo de devolvernos el email asociado a un username, ya que \textit{Supabase} solo permite iniciar sesión con email y contraseña. En caso de que todo el método transcurra correctamente, se devuelve la sesión. Por su parte, en el cerrado de sesión se establece la sesión a nula y se devuelve éxito. \\
+
+La Figura~\ref{fig:dsregister} muestra el proceso de registro. En este proceso, se hace de dos módulos de \textit{Supabase}. Por un lado, primero se intenta añadir el usuario en la tabla \textit{auth.users} comprobando que no haya una cuenta existente con el email introducido. Posteriormente, mediante un trigger automático dentro de la base de datos, se crea el usuario en la tabla \textit{usuario} comprobando que el username no esté repetido. Si ya existía ese username en el sistema, se revierte todo el proceso. \\
+
+Podemos observar en la Figura~\ref{fig:dscreate} como se crea un grupo y una opción. Ambos, cuentan con un proceso muy similar, pasando por el flujo \textit{Frontend}, \textit{Riverpod} y \textit{Supabase Database} y devolviendo un error en caso de que haya algún problema. Sin embargo, el grupo cuenta con un paso intermedio para almacenar la imagen de perfil en \textit{Supabase Storage}, devolviendo la url para que sea almacenada en los datos del grupo. \\
+
+En la Figura~\ref{fig:dsdecision} vemos la creación de una decisión normal y una decisión watch. La peculiaridad con respecto al resto de métodos de creación que podemos observar en la decisión normal es un bucle entre \textit{Riverpod} y \textit{Supabase Database} para la creación de las opciones asociadas a una decisión. \\
+
+Por útimo, la Figura~\ref{fig:dsvote} muestra el proceso de voto. Lo especial de este método es que dispone de un trigger interno en \textit{Supabase} para determinar si la combinación de usuario y grupo era el último que quedaba por registrar con respecto a ese decisión, y en caso de ser así cambia automáticamente el estado de la decisión a terminada. \\
 
     \begin{figure}
         \centering
@@ -677,7 +690,7 @@ En los diagramas de secuencia el cliente interactúa con el frontend, y este act
             \centering
             \includegraphics[width=\textwidth]{figuras/diagramas/secuencia/DSLogout.png}
             \caption{Cierre de sesión}
-            \label{fig:logout}
+            \label{fig:dslogout}
         \end{subfigure}
         \caption{Diagramas de secuencia de sesión}
         \label{fig:dssesion}
@@ -685,31 +698,25 @@ En los diagramas de secuencia el cliente interactúa con el frontend, y este act
 
     \begin{figure}[ht]
         \centering
-        \includegraphics[width=0.9\textwidth]{figuras/diagramas/secuencia/DSRegister.png}
+        \includegraphics[width=\textwidth]{figuras/diagramas/secuencia/DSRegister.png}
         \caption{Diagrama de secuencia de registro }
         \label{fig:dsregister}
     \end{figure}
 
     \begin{figure}
         \centering
-        \begin{subfigure}[ht]{0.9\textwidth}
+        \begin{subfigure}[ht]{\textwidth}
             \centering
             \includegraphics[width=\textwidth]{figuras/diagramas/secuencia/DSCreateGroup.png}
             \caption{Grupo}
             \label{fig:dsgroup}
         \end{subfigure}
         \hspace{1cm}
-        \begin{subfigure}[ht]{0.9\textwidth}
+        \begin{subfigure}[ht]{\textwidth}
             \centering
             \includegraphics[width=\textwidth]{figuras/diagramas/secuencia/DSCreateOption.png}
             \caption{Opción}
             \label{fig:option}
-        \end{subfigure}
-        \begin{subfigure}[ht]{0.7\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{figuras/diagramas/secuencia/DSCreateCriterion.png}
-            \caption{Criterio}
-            \label{fig:criterion}
         \end{subfigure}
         \caption{Diagramas de secuencia de creacion}
         \label{fig:dscreate}
@@ -733,28 +740,10 @@ En los diagramas de secuencia el cliente interactúa con el frontend, y este act
         \caption{Diagramas de secuencia de creación de decisión}
         \label{fig:dsdecision}
     \end{figure}
-
-    \begin{figure}
+    
+    \begin{figure}[ht]
         \centering
-        \begin{subfigure}[ht]{0.7\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{figuras/diagramas/secuencia/DSCreateSimpleVote.png}
-            \caption{Simple}
-            \label{fig:dssimplevote}
-        \end{subfigure}
-        \hspace{1cm}
-        \begin{subfigure}[ht]{0.7\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{figuras/diagramas/secuencia/DSCreateCriterionVote.png}
-            \caption{Criterio}
-            \label{fig:dscriterionvote}
-        \end{subfigure}
-        \begin{subfigure}[ht]{0.9\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{figuras/diagramas/secuencia/DSCreateScientificVote.png}
-            \caption{científico}
-            \label{fig:dsscientificvote}
-        \end{subfigure}
+        \includegraphics[width=\textwidth]{figuras/diagramas/secuencia/DSCreateSimpleVote.png}
         \caption{Diagramas de secuencia de voto}
         \label{fig:dsvote}
     \end{figure}
@@ -1105,7 +1094,7 @@ Las flechas grandes indican las posibles pantallas que pueden abrirse al iniciar
 
 Asimismo, desde cualquier pantalla que no sea \textit{Login}, \textit{Registro}, \textit{Políticas} o \textit{Recuperar contraseña} se podrá navegar a las distintas pantallas representadas en violeta. Se han ahorrado estas líneas, para aportar claridad. \\
 
-Dependiendo de tu tipo de usuario podrás acceder a distintas pantallas violetas. Un usuario normal no podrá acceder a la pantalla \textit{Lista de usuarios}, por su parte un administrador no dispondrá de las pantallas \textit{Modo individual} y \textit{Notificaciones}. \\
+Dependiendo del tipo de usuario, se podrá acceder a distintas pantallas violetas. Un usuario normal no podrá acceder a la pantalla \textit{Lista de usuarios}; por su parte, un administrador no dispondrá de las pantallas \textit{Modo individual} y \textit{Notificaciones}. \\
 
 
     \begin{figure}[ht]
