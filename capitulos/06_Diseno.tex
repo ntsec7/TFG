@@ -750,9 +750,31 @@ Por útimo, la Figura~\ref{fig:dsvote} muestra el proceso de voto. Lo especial d
 
 \section{Diseño de interfaces de usuario}
 
-    Se exponen ahora en las Figuras \ref{fig:diupantallasiniciales}, \ref{fig:diupantallasgrupos}, \ref{fig:diugrouphistory}, \ref{fig:diusinglehistorygroup}, \ref{fig:diunotifications}, \ref{fig:diuperfil}, \ref{fig:diudecision}, \ref{fig:diuvotes}, \ref{fig:diudecisionwatch} y \ref{fig:diuadmin} los bocetos que representan el estado final de la aplicación. \\
+    Se exponen ahora los bocetos que representan el estado final de la aplicación. \\
     
-    La aplicación se encuentra disponible en modo claro y oscuro, escogíendose uno u otro según la configuración del dispositivo. Los bocetos se han desarrollado en tema claro, habiéndose adjuntado uno adicional en el login con tema oscuro para que se pueda apreciar la gama de colores a usar.
+    La aplicación se encuentra disponible en modo claro y oscuro, escogíendose uno u otro según la configuración del dispositivo. Los bocetos se han desarrollado en tema claro, habiéndose adjuntado uno adicional en el login con tema oscuro para que se pueda apreciar la gama de colores a usar. \\
+
+    en las Figuras \ref{fig:diupantallasiniciales}, \ref{fig:diupantallasgrupos}, \ref{fig:diugrouphistory}, \ref{fig:diusinglehistorygroup}, \ref{fig:diunotifications}, \ref{fig:diuperfil}, \ref{fig:diudecision}, \ref{fig:diuvotes}, \ref{fig:diudecisionwatch} y \ref{fig:diuadmin}
+
+    En la Figura~\ref{fig:diupantallasiniciales} podemos observar las pantallas de inicio de sesión, registro, confirmación de email, cambio de contraseña y avisos legales. Desde la pantalla de inicio de sesión, se podrá acceder a cualquiera de las otras cuatro. 
+
+    Es necesario confirmar de email después del registro de la cuenta para poder iniciar sesión. La pantalla de recuperar contraseña es accedida automaticaménte desde un enlace enviado al email después de haber pulsado en \textit{He olvidado mi contraseña} en la pantalla de Login. Por su parte, la pantalla de Aviso Legal sigue la misma plantilla que las de Política de privacidad y Términos y condiciones. \\
+
+    Las Figuras~\ref{fig:diupantallasgrupos} y \ref{fig:diugrouphistory} muestran las pantallas relativas a los grupos. La pantalla principal muestra los grupos a los que pertenece el usuario, y en caso de que sea un administrador muestra todos los grupos del sistema. Por su parte, en la pantalla principal de un grupo se encuentran las votaciones en proceso de voto o sugerencia de opciones, pudiendo asimismo crear una nueva pulsando en el icono de suma. Interactuando con el navegador de la cabecera podremos ver los miembros del grupo, pudiendo eliminarlos pulsando en la papelera al lado de su nombre. En caso de querer salirte tú mismo, debes pulsar en la papelera de la cabecera. Si pulsamos en el último icono de la navegación superior se accederá al historial de las decisiones del grupo, pudiendo repetir una votación pulsando en el botón de las dos flechas o ver una decisión y sus opciones en detalle pulsando en ellas. También podemos ver la pantalla de creación de un grupo, para poder acceder a ella se debe pulsar en el botón con el icono de suma que se encuentra en la página principal. \\
+
+    El modo individual, tal como podemos observar en la Figura~\ref{fig:diusinglehistorygroup} cuenta con un diseño muy similar al apartado de grupos, con la diferencia de que aquí no existen decisiones en periodo de votación o sugerencia de opciones, y tampoco contamos con el apartado de miembros. \\
+
+    La Figura~\ref{fig:diunotifications} muestra las notificaciones de la aplicación. Su objetivo es informar sobre la pertenencia de los usuarios a grupos, mandando invitaciones y avisando cuando le echen de uno. \\
+
+    En la Figura~\ref{fig:diuperfil} podemos observar la pantalla de edición del perfil, pudiendo un usuario cambiar todos sus datos, cerrar sesión, eliminar su cuenta pulsando en el icono de la papelera o ver las políticas de la aplicación. En caso de cambiar el email, se avisará al usuario mediante un aviso de que debe confirmar el cambio mediante el correo. \\
+
+    Las Figuras~\ref{fig:diudecision} y \ref{fig:diuopcion} muestran la creación y visualización de decisiones y opciones respectivamente. Para poder añadir una opción asociada a una decisión, debe pulsarse en el icono de la suma, pasando así a la pantalla de creación de una opción. Como podemos observar, la pantalla de visualización de una decisión permite seguir añadiendo opciones, esto es debido a que esta pantalla es la usada en el apartado de sugerencia de opciones de la pantalla principal de un grupo. En caso de que la decisión se encuentre en el apartado de votación se nos redirigirá a una pantalla de la Figura~\ref{fig:diuvotes} dependiendo del tipo de la decisión. \\
+
+    Una decisión predeterminada, por su parte contará con el aspecto presentado en la Figura~\ref{fig:diudecisionwatch}, pudiendo elegir entre distintas opciones y contando con un tipo de voto distinto. El usuario podrá votar a favor o en contra de cada una de las opciones. \\
+
+    Por último, la Figura~\ref{fig:diuadmin} muestra las pantallas que son distintas para el administrador. Como podemos observar, la navegación inferior es distinta, contando con un listado de todos los usuarios de la aplicación en vez del apartado individual y de notificaciones. En ese apartado, pulsando en el icono del lápiz, se accede a la edición de ese usuario, teniendo como novedad respecto a la pantalla de perfil que se le pueda cambiar el tipo de usuario.
+    
+    Un administrador por su parte, no puede eliminar su propia cuenta, por eso no dispone del botón de la papelera en el apartado de perfil. Asimismo, al no pertencer a ningún grupo, el icono de la papelera en la cabecera de un grupo, sirve para eliminar el grupo. 
 
     \begin{figure}
         \centering
@@ -945,32 +967,44 @@ Por útimo, la Figura~\ref{fig:dsvote} muestra el proceso de voto. Lo especial d
         \begin{subfigure}[ht]{0.3\textwidth}
             \centering
             \includegraphics[width=\textwidth]{figuras/diu/Crear Decision.png}
-            \caption{Voto y Ranking}
+            \caption{Creación}
             \label{fig:diudec1}
         \end{subfigure}
          \hfill % Espacio elástico entre imágenes
         \begin{subfigure}[ht]{0.3\textwidth}
             \centering
             \includegraphics[width=\textwidth]{figuras/diu/Crear Decision 2.png}
-            \caption{Cambiar el tipo}
+            \caption{Cambiar el tipo de una decisión}
             \label{fig:diucdec2}
         \end{subfigure}
          \hfill % Espacio elástico entre imágenes
         \begin{subfigure}[ht]{0.3\textwidth}
             \centering
-            \includegraphics[width=\textwidth]{figuras/diu/Crear Decision Cientifica.png}
-            \caption{Científica}
-            \label{fig:diudecisionscientific}
+            \includegraphics[width=\textwidth]{figuras/diu/Ver Decision.png}
+            \caption{Ver una decisión}
+            \label{fig:diuseedecision}
         \end{subfigure}
-         \hfill % Espacio elástico entre imágenes
+        \caption{Creación y visualización de una decisión}
+        \label{fig:diudecision}
+    \end{figure}
+
+    \begin{figure}
+        \centering
         \begin{subfigure}[ht]{0.3\textwidth}
             \centering
-            \includegraphics[width=\textwidth]{figuras/diu/Crear Decision Ruleta.png}
-            \caption{Ruleta}
-            \label{fig:diudecisionrulete}
+            \includegraphics[width=\textwidth]{figuras/diu/Crear Opcion.png}
+            \caption{Creación}
+            \label{fig:diuop1}
         \end{subfigure}
-        \caption{Crear una decisión}
-        \label{fig:diudecision}
+         \hspace{1.5cm} % Espacio elástico entre imágenes
+        \begin{subfigure}[ht]{0.3\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figuras/diu/Ver Opción.png}
+            \caption{Ver una opción}
+            \label{fig:diuseeoption}
+        \end{subfigure}
+        \caption{Creación y visualización de una opción}
+        \label{fig:diuopcion}
     \end{figure}
 
     \begin{figure}
@@ -980,20 +1014,6 @@ Por útimo, la Figura~\ref{fig:dsvote} muestra el proceso de voto. Lo especial d
             \includegraphics[width=\textwidth]{figuras/diu/Voto Votación.png}
             \caption{Votación clásica}
             \label{fig:diuvoto}
-        \end{subfigure}
-         \hfill % Espacio elástico entre imágenes
-        \begin{subfigure}[ht]{0.3\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{figuras/diu/Voto Científica.png}
-            \caption{Científica criterios}
-            \label{fig:diuscientificcriterion}
-        \end{subfigure}
-         \hfill % Espacio elástico entre imágenes
-        \begin{subfigure}[ht]{0.3\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{figuras/diu/Voto Científica 2.png}
-            \caption{Científica opciones}
-            \label{fig:diuscientificopinions}
         \end{subfigure}
          \hfill % Espacio elástico entre imágenes
         \begin{subfigure}[ht]{0.3\textwidth}
@@ -1008,13 +1028,6 @@ Por útimo, la Figura~\ref{fig:dsvote} muestra el proceso de voto. Lo especial d
             \includegraphics[width=\textwidth]{figuras/diu/Voto Ranking.png}
             \caption{Ranking}
             \label{fig:diunanking}
-        \end{subfigure}
-         \hfill % Espacio elástico entre imágenes
-        \begin{subfigure}[ht]{0.3\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{figuras/diu/Voto Votación Ver Opción.png}
-            \caption{Ver una opción}
-            \label{fig:diuvoteopcion}
         \end{subfigure}
         \caption{Votar}
         \label{fig:diuvotes}
@@ -1031,14 +1044,14 @@ Por útimo, la Figura~\ref{fig:dsvote} muestra el proceso de voto. Lo especial d
          \hfill % Espacio elástico entre imágenes
         \begin{subfigure}[ht]{0.3\textwidth}
             \centering
-            \includegraphics[width=\textwidth]{figuras/diu/Crear Decision Predeterminada Cine (1).png}
+            \includegraphics[width=\textwidth]{figuras/diu/Crear Decision Predeterminada Cine.png}
             \caption{Crearla}
             \label{fig:diucreatedecisionwatch2}
         \end{subfigure}
          \hfill % Espacio elástico entre imágenes
         \begin{subfigure}[ht]{0.3\textwidth}
             \centering
-            \includegraphics[width=\textwidth]{figuras/diu/Decision Predeterminada Cine.png}
+            \includegraphics[width=\textwidth]{figuras/diu/Crear Decision Predeterminada Cine 2.png}
             \caption{Votar}
             \label{fig:diuvotedecisionwatch}
         \end{subfigure}
@@ -1079,7 +1092,7 @@ Por útimo, la Figura~\ref{fig:dsvote} muestra el proceso de voto. Lo especial d
         \begin{subfigure}[ht]{0.3\textwidth}
             \centering
             \includegraphics[width=\textwidth]{figuras/diu/Admin Edicion Usuarios Perfil 2.png}
-            \caption{Editar un perfil}
+            \caption{Cambiar el tipo de un perfil}
             \label{fig:diuadminaccount2}
         \end{subfigure}
         \caption{Bocetos de las pantallas de administración}
