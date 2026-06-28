@@ -7,28 +7,148 @@ En esta sección se describen las distintas herramientas empleadas durante el de
 \begin{itemize}
     \item \textbf{Visual Studio Code:} Entorno de desarrollo integrado \textit{(IDE)} utilizado para la implementación del Frontend de la aplicación.
     \item \textbf{Android Studio:} Herramienta empleada para la ejecución y prueba de la aplicación en emuladores y dispositivos Android, permitiendo visualizar los cambios realizados durante el desarrollo.
-    \item \textbf{Supabase:} Plataforma Backend as a Service \textit{(BaaS)} utilizada como backend de la aplicación, proporcionando servicios de base de datos, autenticación y almacenamiento.
-    \item \textbf{Jira:} Herramienta de gestión de proyectos utilizada para la planificación y organización de los distintos sprints, facilitando la distribución y seguimiento de las tareas.
+    \item \textbf{Supabase:} Plataforma Backend as a Service \textit{(BaaS)} utilizada como backend de la aplicación, proporcionando servicios de base de datos, autenticación y almacenamiento. Su uso se extendió durante todo el ciclo de vida del desarrollo. Como se ilustra en las Figuras~\ref{fig:supabase1} y \ref{fig:supabase2}, la plataforma facilitó la visualización de la estructura y el contenido de las distintas tablas. Además, tal como muestra la Figura~\ref{fig:supabase3}, permitió definir directamente desde su interfaz web tanto las tablas como los \textit{triggers} y las funciones de la base de datos. Por último, resultó una herramienta clave para la monitorización y detección de errores en las \textit{edge functions}, disparadores y en el sistema de almacenamiento de imágenes, optimizando significativamente el flujo de trabajo.
+    
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=\tamInterfaz\textwidth]{figuras/herramientas/Supabase1.png}
+        \caption{Estructura de las tablas de base de datos con Supabase}
+        \label{fig:supabase1}
+    \end{figure}
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=\tamInterfaz\textwidth]{figuras/herramientas/Supabase2.png}
+        \caption{Contenido de las tablas de base de datos con Supabase}
+        \label{fig:supabase2}
+    \end{figure}
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=\tamInterfaz\textwidth]{figuras/herramientas/Supabase3.png}
+        \caption{Creación de la base de datos con Supabase}
+        \label{fig:supabase3}
+    \end{figure}
+
+    \item \textbf{Jira:} Herramienta de gestión de proyectos utilizada para la planificación y organización de los distintos \textit{sprints}, lo que facilitó la distribución y el seguimiento de las tareas a lo largo de todo el desarrollo. Inicialmente, permitió dividir las historias de usuario en bloques de trabajo de acuerdo con sus puntos de historia asociados. Posteriormente, se empleó como indicador del progreso global de la aplicación (ver Figura~\ref{fig:jira1}), ayudando a estimar el cumplimiento de los plazos. Asimismo, tal como se muestra en la Figura~\ref{fig:jira2}, fue de gran utilidad para visualizar el estado de las tareas dentro del \textit{sprint} activo, optimizando así la organización del trabajo diario.
+    
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=\tamInterfaz\textwidth]{figuras/herramientas/Jira1.png}
+        \caption{Gestión de los sprints con Jira}
+        \label{fig:jira1}
+    \end{figure}
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=\tamInterfaz\textwidth]{figuras/herramientas/Jira2.png}
+        \caption{Gestión de las historias de usuario con Jira}
+        \label{fig:jira2}
+    \end{figure}
+
     \item \textbf{Github:} Plataforma de control de versiones empleada para alojar el \href{https://github.com/ntsec7/TFG}{código fuente del proyecto} y gestionar su evolución mediante un repositorio.
     \item \textbf{Google Drive:} Servicio de almacenamiento en la nube utilizado en la generación de los distintos diagramas representados en el presente documento.
+    \item \textbf{Gmail:} Servicio de correo electrónico utilizado para el envío de mensajes de verificación de las cuentas registradas en la aplicación y para la confirmación de los cambios de contraseña.
     \item \textbf{Overleaf:} Plataforma basada en \LaTeX{} utilizada para la redacción y edición de la presente memoria.
     \item \textbf{Figma:} Herramienta de diseño empleada en la elaboración de los diagramas de interfaz de usuario incluidos en el documento.
-    \item \textbf{Gmail:} Servicio de correo electrónico utilizado para el envío de mensajes de verificación de las cuentas registradas en la aplicación y para la confirmación de los cambios de contraseña.
 \end{itemize}    
 
 \section{Explicación de la implementación}
 
-El proceso más importante e interesante de la aplicación es la toma de decisiones. Para la creación de una decisión se utilizan dos modelos auxiliares, \textit{DecisionDraft} y \textit{OptionDraft}, que contienen los mismos campos que los modelos \textit{Decision} y \textit{Option} respectivamente, pero sin los identificadores asociados. Estos modelos tienen como finalidad almacenar los datos temporalmente entre pantallas. En \textit{DecisionDraft} se almacena además la lista de \textit{OptionDraft} creadas. Una vez finalizado el diseño de la decisión, el usuario puede optar por dos caminos: crear la decisión directamente para ponerla en votación, o iniciar el proceso de sugerencia de opciones. Dependiendo de la elección, tal como se muestra en la Figura~\ref{fig:diugrouphomepage}, la decisión aparecerá en un apartado u otro de la pantalla. \\
+A lo largo de este apartado se explicarán los aspectos más importantes desarrollados durante la implementación de la aplicación.
 
-Una decisión atraviesa 4 estados a lo largo de su ciclo de vida, tal como podemos observar en la Figura~\ref{fig:ciclodecision}. Durante la creación se encuentra en el estado \textit{Draft}; posteriormente pasa a \textit{Option} (estado que puede omitirse); a continuación, a \textit{Vote}; y finalmente a \textit{Finish}. En las transiciones de \textit{Option} a \textit{Vote} y de \textit{Vote} a \textit{Finish} es posible especificar un tiempo máximo tras el cual el cambio de estado se produce automáticamente. Para ello se ha implementado una \textit{Edge Function} —que permite encapsular operaciones que requieren ejecutarse en el servidor— la cual se ejecuta una vez por minuto y comprueba si la hora de finalización del estado actual es menor o igual que la hora actual, actualizando el estado de la decisión cuando se cumple dicha condición. \\
+\subsection{Decisiones}
+
+El proceso más importante e interesante de la aplicación es la toma de decisiones. Para la creación de una decisión se utilizan dos modelos auxiliares, \textit{DecisionDraft} y \textit{OptionDraft}, que contienen los mismos campos que los modelos \textit{Decision (id, id\_group, id\_creator, title, state, options\_date, vote\_date, type, votes)} y \textit{Option (id, id\_decision, id\_creator, title, description, percentage, image, num\_votes) }respectivamente, pero sin los identificadores y variables de estado asociadas. Estos modelos tienen como finalidad almacenar los datos temporalmente entre pantallas. En \textit{DecisionDraft} se almacena además la lista de \textit{OptionDraft} creadas. Una vez finalizado el diseño de la decisión, el usuario puede optar por dos caminos: crear la decisión directamente para ponerla en votación, o iniciar el proceso de sugerencia de opciones. Dependiendo de la elección, tal como se muestra en la Figura~\ref{fig:diugrouphomepage}, la decisión aparecerá en un apartado u otro de la pantalla. \\
+
+\begin{comment}
+Una decisión atraviesa 4 estados a lo largo de su ciclo de vida, tal como podemos observar en la Figura~\ref{fig:ciclodecision}. Durante la creación se encuentra en el estado \textit{Draft}; posteriormente pasa a \textit{Option} (estado que puede omitirse); a continuación, a \textit{Vote}; y finalmente a \textit{Finish}. En las transiciones de \textit{Option} a \textit{Vote} y de \textit{Vote} a \textit{Finish} es posible especificar un tiempo máximo tras el cual el cambio de estado se produce automáticamente. Para ello se ha implementado una \textit{Edge Function} —que permite encapsular operaciones que requieren ejecutarse en el servidor— la cual se ejecuta una vez por minuto y comprueba si la hora de finalización del estado actual es menor o igual que la hora actual, actualizando el estado de la decisión cuando se cumple dicha condición. \\ \end{comment}
+
+Una decisión atraviesa 4 estados a lo largo de su ciclo de vida, tal como se observa en la Figura~\ref{fig:ciclodecision}. Esos estados son:
+\begin{enumerate}
+    \item \textbf{Draft:} Indica la fase de creación de la decisión.
+    \item \textbf{Option:} Estado opcional que permite a los miembros de un grupo sugerir alternativas para la decisión.
+    \item \textbf{Vote:} Habilita la votación de las distintas opciones disponibles. Si la decisión pertenece a un grupo, todos sus miembros pueden votar; sin embargo, en las decisiones de tipo ruleta, solo el creador tiene permitido emitir el voto. En este estado, la interfaz de votación se adaptará según el tipo de decisión seleccionado.
+    \item \textbf{Finish:} Es el estado final e inmutable de la decisión, en el cual ya no es posible editarla ni registrar nuevos votos.
+\end{enumerate}    
+
+\begin{comment} Durante la creación se encuentra en el estado \textit{Draft}; posteriormente pasa a \textit{Option} (estado que puede omitirse); a continuación, a \textit{Vote}; y finalmente a \textit{Finish}. En las transiciones de \textit{Option} a \textit{Vote} y de \textit{Vote} a \textit{Finish} es posible especificar un tiempo máximo tras el cual el cambio de estado se produce automáticamente. Para ello se ha implementado una \textit{Edge Function} —que permite encapsular operaciones que requieren ejecutarse en el servidor— la cual se ejecuta una vez por minuto y comprueba si la hora de finalización del estado actual es menor o igual que la hora actual, actualizando el estado de la decisión cuando se cumple dicha condición. \end{comment}
+
+Las transiciones posibles entre estos estados son las siguientes:
+\begin{itemize}
+    \item \textbf{Draft $\rightarrow$ Option:} Se activa automáticamente una vez definidos el título y el tipo de la decisión, habilitando a los miembros del grupo proponer opciones.
+    \item \textbf{Draft $\rightarrow$ Vote:} Para realizar esta transición, es necesario haber definido el título, el tipo y, al menos, dos opciones.
+    \item \textbf{Option $\rightarrow$ Vote:} Esta transición puede ejecutarse de dos formas: de manera manual, mediante un botón accionado por el creador de la decisión, o de forma automática a través de una \textit{Edge Function} -que permite encapsular operaciones que requieren ejecutarse en el servidor- la cual se ejecuta una vez por minuto y comprueba si la hora de finalización del estado actual es menor o igual que la hora actual, actualizando el estado de la decisión cuando se cumple dicha condición.
+    \item \textbf{Vote $\rightarrow$ Finish:} Puede ocurrir de tres maneras: manualmente por el creador, automáticamente mediante la \textit{Edge Function}, o de forma automática al completarse los votos de todos los participantes. Esta última vía se gestiona mediante un \texttt{trigger} que se dispara con cada nueva votación. Por otro lado, las decisiones de tipo ruleta tienen un flujo de cierre distinto: dado que el creador genera un único voto aleatorio, la decisión finaliza automáticamente justo después de registrarse dicha acción.
+\end{itemize}    
 
     \begin{figure}[ht]
         \centering
-        \includegraphics[width=0.7\textwidth]{figuras/EstadosDecision.png}
+        \includegraphics[width=0.5\textwidth]{figuras/implementacion/EstadosDecision.png}
         \caption{Ciclo de vida de una decisión }
         \label{fig:ciclodecision}
     \end{figure}
 
-Asimismo, cuando una decisión se encuentra en el estado \textit{Vote}, se muestra una pantalla de votación distinta en función de su tipo: \textit{simple}, \textit{ranking} o \textit{roulette}. Una vez que todos los miembros participantes han registrado su voto, la decisión pasa automáticamente al estado \textit{Finish}, aunque no haya expirado el tiempo destinado a la votación. Esto es posible gracias a un \texttt{trigger} que se dispara al registrarse cada nueva votación. Las decisiones de tipo \textit{roulette} no tienen un tiempo máximo entre los estados \textit{Vote} y \textit{Finish}, ya que únicamente requieren que el creador de la decisión acceda a la pantalla de votación. \\
+\begin{comment} Asimismo, cuando una decisión se encuentra en el estado \textit{Vote}, se muestra una pantalla de votación distinta en función de su tipo: \textit{simple}, \textit{ranking} o \textit{roulette}. Una vez que todos los miembros participantes han registrado su voto, la decisión pasa automáticamente al estado \textit{Finish}, aunque no haya expirado el tiempo destinado a la votación. Esto es posible gracias a un \texttt{trigger} que se dispara al registrarse cada nueva votación. Las decisiones de tipo \textit{roulette} no tienen un tiempo máximo entre los estados \textit{Vote} y \textit{Finish}, ya que únicamente requieren que el creador de la decisión acceda a la pantalla de votación. \\ \end{comment}
 
-Para que todo lo anterior funcione de forma ordenada y coherente, es necesario que los cambios se reflejen en tiempo real para todos los usuarios. Con este fin, se activa la opción \texttt{Realtime} en las tablas correspondientes de \textit{Supabase} y se obtiene el flujo de datos mediante \texttt{Riverpod} y \texttt{Stream}. \texttt{Riverpod} es una librería que desacopla la lógica de negocio de la interfaz, facilitando una arquitectura reactiva en la que los cambios de estado se propagen automáticamente a los componentes de la UI. Por su parte, \texttt{Stream} abre un canal de datos continuo y sincronizado con la base de datos.
+\begin{comment}Para que todo lo anterior funcione de forma ordenada y coherente, es necesario que los cambios se reflejen en tiempo real para todos los usuarios. Con este fin, se activa la opción \texttt{Realtime} en las tablas correspondientes de \textit{Supabase} y se obtiene el flujo de datos mediante \texttt{Riverpod} y \texttt{Stream}. \texttt{Riverpod} es una biblioteca que desacopla la lógica de negocio de la interfaz, facilitando una arquitectura reactiva en la que los cambios de estado se propagen automáticamente a los componentes de la UI. Por su parte, \texttt{Stream} abre un canal de datos continuo y sincronizado con la base de datos. \end{comment}
+
+Para garantizar una experiencia de usuario fluida, interactiva y colaborativa, el sistema requiere que cualquier modificación en los datos se refleje instantáneamente en todos los clientes conectados. Para lograr esta sincronización en tiempo real con un acoplamiento mínimo, se implementó una arquitectura reactiva (ver Figura~\ref{fig:supabaseRealtime}) basada en tres pilares: Supabase Realtime, Dart Streams y Riverpod.
+
+\begin{enumerate}
+
+    \item Captura de Eventos en la Base de Datos (Supabase Realtime)
+El flujo comienza en el backend con la activación de la funcionalidad \texttt{Realtime} en las tablas críticas de \textit{Supabase} (basada en el sistema de replicación lógica de PostgreSQL). Al habilitar esta opción, la base de datos empieza a escuchar activamente los eventos de inserción (\textit{INSERT}), actualización (\textit{UPDATE}) y eliminación (\textit{DELETE}). \textit{Supabase} expone estos cambios a través de un canal de \textit{WebSockets}, transformando cualquier mutación en la base de datos en un evento de red inmediato.
+
+    \item Consumo y Canalización del Flujo (Dart Streams)
+En el lado de la aplicación, el SDK de \textit{Supabase} para \textit{Flutter} se suscribe a dicho canal de \textit{WebSockets}. Esta suscripción se gestiona mediante un \texttt{Stream} de Dart, el cual actúa como un conducto o tubería asíncrona de datos continua. En lugar de realizar peticiones HTTP tradicionales de tipo pull (donde la aplicación solicita información periódicamente), el \texttt{Stream} opera bajo un modelo push: permanece abierto y en espera, reaccionando de manera pasiva y emitiendo un nuevo elemento cada vez que el servidor notifica un cambio.
+
+    \item Gestión de Estado y Reactividad en la UI (Riverpod)
+Para evitar que la lógica de red se mezcle con la interfaz de usuario, se introduce \texttt{Riverpod} como gestor de estado y pieza articuladora. Se define un proveedor de tipo \texttt{StreamProvider}, el cual se encarga de escuchar el \texttt{Stream} proveniente de \textit{Supabase}. Las ventajas de delegar este control a \texttt{Riverpod} son clave:
+\begin{itemize}
+\item \textbf{Desacoplamiento:} La interfaz de usuario no conoce los detalles de la conexión a la base de datos; solo consume el estado expuesto por el proveedor.
+\item \textbf{Gestión de Ciclo de Vida:} \texttt{Riverpod} controla automáticamente la apertura y el cierre de las conexiones a los canales en tiempo real, destruyendo el \texttt{Stream} cuando la pantalla se destruye para evitar fugas de memoria (\textit{memory leaks}).
+\item \textbf{Manejo de Estados Asíncronos:} Permite a las vistas reaccionar de forma nativa a tres estados bien definidos: carga (\textit{loading}), error (\textit{error}) o datos listos (\textit{data}), actualizando los componentes visuales de la UI mediante su método \texttt{ref.watch()} sin necesidad de redibujar la pantalla completa de forma manual.
+\end{itemize}
+
+\end{enumerate}
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figuras/implementacion/SupabaseRealtime.png}
+        \caption{Arquitectura reactiva de la aplicación }
+        \label{fig:supabaseRealtime}
+    \end{figure}
+
+
+\subsection{Decisiones sobre películas y series}
+
+\subsection{Seguridad y Control de Acceso}
+
+La seguridad de la plataforma se ha diseñado bajo un enfoque multicapa, garantizando la integridad de los datos, la confidencialidad de la información sensible y el cumplimiento del principio de menor privilegio, tanto en el backend como en el cliente.
+
+\subsubsection{Autenticación y Verificación de Identidad}
+Como primer filtro de seguridad, se implementa un mecanismo de autenticación robusto gestionado en combinación con \textit{Supabase Auth}. Para mitigar la creación de cuentas falsas y ataques de suplantación, se requiere obligatoriamente la verificación de la identidad del usuario mediante el envío de un correo electrónico de confirmación, tanto en el proceso de registro (\textit{sign-up}) como en las solicitudes de restablecimiento de contraseña.
+
+\subsubsection{Seguridad en Capa de Base de Datos y Control de Acceso}
+Para proteger la persistencia de los datos, todas las funciones y consultas ejecutadas en la base de datos realizan una estricta validación de los permisos del cliente de forma jerárquica. Este control de acceso se articula mediante tres criterios no excluyentes, pudiendo solaparse varios de ellos para autorizar una única operación:
+\begin{itemize}
+    \item \textbf{Control de Acceso Basado en Roles (RBAC):} Se evalúa el rol asignado al usuario (cliente o administrador) dentro del sistema.
+    \item \textbf{Validación de Pertenencia (Contexto de Grupo):} Se verifica si el usuario pertenece activamente al grupo o entidad sobre la que pretende realizar modificaciones.
+    \item \textbf{Políticas de Propietario (\textit{Ownership}):} Se comprueba de manera unívoca que las acciones que alteren datos críticos o privados correspondan estrictamente a la cuenta del usuario autenticado.
+\end{itemize}
+
+\subsubsection{Aislamiento de Lógica Sensible mediante Edge Functions}
+En escenarios donde las acciones requieren privilegios elevados o exponen vectores de ataque, se despliegan \textit{Edge Functions} para aislar la lógica del cliente. Un caso crítico de esta arquitectura ocurre durante el inicio de sesión: dado que \textit{Supabase} restringe de forma nativa la autenticación al uso exclusivo de \textit{email} y contraseña, y la aplicación permite el acceso mediante nombre de usuario, se desarrolló una \textit{Edge Function} que realiza la conversión interna del nombre de usuario al correo electrónico asociado.
+
+El uso de \textit{Edge Functions} para este propósito, en lugar de funciones SQL tradicionales expuestas, aporta las siguientes ventajas competitivas en seguridad:
+\begin{itemize}
+    \item \textbf{Prevención de Phishing y Extración de Datos:} Evita que un atacante pueda realizar consultas masivas (\textit{scraping}) de correos electrónicos mediante fuerza bruta sobre los nombres de usuario.
+    \item \textbf{Encapsulamiento y Ofuscación:} Oculta los detalles de implementación interna y restringe el acceso directo al esquema protegido \texttt{auth.users} de PostgreSQL.
+    \item \textbf{Escalabilidad y Defensas Avanzadas:} Permite interconectar el flujo con lógica de terceros en el futuro o implementar capas adicionales de infraestructura como políticas de límite de peticiones (\textit{rate-limiting}) y protección anti-bots.
+\end{itemize}
+
+\subsubsection{Seguridad en el Frontend y Roles de Administración}
+En la capa de aplicación (\textit{Flutter}), se implementa un control de visualización reactivo que restringe los componentes de la interfaz de usuario (UI) según el estado de autenticación y los privilegios del usuario. Por ejemplo, las opciones de edición de una decisión quedan limitadas exclusivamente a su creador o a un administrador. En el caso de la gestión de opciones particulares, los permisos se extienden al creador de la opción, al creador de la decisión y al administrador.
+
+Finalmente, la aplicación delega la gobernanza total del sistema al rol de \textbf{Administrador}. Este perfil cuenta con facultades de moderación global sobre usuarios, grupos y decisiones. Como salvaguarda crítica del sistema, la lógica de negocio estipula que solo un usuario con rol de administrador posee la autorización de modificar o escalar los roles del resto de los usuarios, previniendo ataques de escalada de privilegios.
