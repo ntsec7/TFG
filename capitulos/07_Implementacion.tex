@@ -121,7 +121,27 @@ Para evitar que la lógica de red se mezcle con la interfaz de usuario, se intro
     \end{figure}
 
 
-\subsection{Decisiones sobre películas y series}
+\subsection{Decisiones de películas y series (\texttt{watch\_decision})}
+
+Este tipo de decisiones constituye una variante de las decisiones estándar y se divide en dos vertientes principales: la búsqueda directa de un título específico y la generación de sugerencias personalizadas basadas en filtros. \\
+
+Al ser una extensión de las decisiones normales, comparten características comunes, pero con un flujo simplificado. Internamente denominadas \texttt{watch\_decision}, constan únicamente de los estados \textit{vote} y \textit{finish}. Además, permiten configurar un tiempo máximo de expiración para la votación. El sistema de votación funciona de manera idéntica al estándar, almacenando el identificador (\texttt{id}) de la película o serie seleccionada. Asimismo, se incluye un \texttt{trigger} en la base de datos que detecta cuándo un usuario ha finalizado su votación; en el momento en que todos los participantes completan el proceso, este mecanismo cambia automáticamente el estado de la decisión a \textit{finish}. \\
+
+Para la gestión de sugerencias, los filtros seleccionados por el usuario (tipo de contenido, plataforma de \textit{streaming} disponible en España, puntuación, fecha de estreno, orden de visualización y límite de resultados) se procesan y almacenan en la base de datos estructurados en el formato de la URL que se utilizará para la consulta.
+
+\subsubsection{Integración con la API de TMDB}
+
+La obtención de información sobre el catálogo audiovisual se realiza mediante la API de TMDB (\textit{The Movie Database}). Dado que las peticiones requieren el uso de una clave privada (\textit{API Key}), todos los métodos de consulta se ejecutan de forma segura desde el lado del servidor a través de una \textit{Edge Function}, evitando así la exposición de credenciales en el cliente.
+
+El sistema interactúa con la API en cuatro puntos clave del flujo de la aplicación:
+
+\begin{description}
+    \item[\textbf{Sugerencias:}] Realiza una petición parametrizada con los filtros del usuario y devuelve los resultados paginados (20 títulos por página). Con el objetivo de ofrecer una experiencia de usuario fluida sin recargas entre opciones, el sistema solicita de forma proactiva la siguiente página cuando al usuario le restan solo 5 opciones por visualizar. Para permitir la reanudación de la sesión en cualquier momento, se almacena en la base de datos la página actual y el \texttt{id} del último título evaluado.
+    \item[\textbf{Detalles:}] Solicita información extendida de un título específico a partir de su \texttt{id}.
+    \item[\textbf{Historial:}] Recupera las opciones votadas en una decisión, agrupadas por \texttt{id} y ordenadas por número de votos. Realiza una petición masiva para obtener los datos básicos de cada opción. Si el usuario desea profundizar, puede acceder al módulo de \textit{Detalles}.
+    \item[\textbf{Buscador:}] Permite al usuario interactuar desde una decisión normal. Al introducir un título marcado como contenido audiovisual, consulta la API y autocompleta la descripción de la opción con los metadatos obtenidos.
+\end{description}
+
 
 \subsection{Seguridad y Control de Acceso}
 

@@ -65,3 +65,10 @@
 {"rule":"PREP_VERB","sentence":"^\\QPor su parte, las clases que crean las clases que empiezan con heredan de ConsumerStatefulWidget y tienen una relación de dependencia con MyApp.\\E$"}
 {"rule":"SPANISH_WORD_REPEAT_RULE","sentence":"^\\QLogin Login modo oscuro Registro Bocetos de las pantallas iniciales\\E$"}
 {"rule":"CONTINUA","sentence":"^\\QEsta suscripción se gestiona mediante un Stream de Dart, el cual actúa como un conducto o tubería asíncrona de datos continua.\\E$"}
+{"rule":"EN_BASE_A","sentence":"^\\QEn el otro, se le sugieren posibles títulos de su interés en base a unos filtros seleccionados.\\E$"}
+{"rule":"WRONG_IMPERATIVE","sentence":"^\\QMediante el id de la plícula o serie, se piden más datos sobre ella.\\E$"}
+{"rule":"WRONG_IMPERATIVE","sentence":"^\\QSe obtienen las opciones votadas de una decisión, agrupadas por el id y ordenadas por el número de votos.\\E$"}
+{"rule":"EN_BASE_A","sentence":"^\\QEn la otra, se le sugieren al usuario posibles títulos de su interés en base a unos filtros seleccionados\\E$"}
+{"rule":"SUBJUNTIVO_PASADO","sentence":"^\\QInternamente denominadas watchdecision, constan únicamente de los estados vote y finish.\\E$"}
+{"rule":"WRONG_IMPERATIVE","sentence":"^\\QPara permitir la reanudación de la sesión en cualquier momento, se almacena en la base de datos la página actual y el id del último título evaluado.\\E$"}
+{"rule":"PREP_VERB","sentence":"^\\Q[Historial:] Recupera las opciones votadas en una decisión, agrupadas por id y ordenadas por número de votos.\\E$"}
